@@ -1,0 +1,10 @@
+# STM32 build artifacts
+*.elf
+*.hex
+
+# Wokwi simulation files
+*.wokwi.json
+
+# IDE/project settings
+.vscode/
+.idea/
