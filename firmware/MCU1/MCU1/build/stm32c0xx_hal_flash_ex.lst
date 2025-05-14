@@ -1,0 +1,2877 @@
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"stm32c0xx_hal_flash_ex.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.FLASH_MassErase,"ax",%progbits
+  18              		.align	1
+  19              		.syntax unified
+  20              		.code	16
+  21              		.thumb_func
+  23              	FLASH_MassErase:
+  24              	.LFB223:
+  25              		.file 1 "Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c"
+   1:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+   2:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   ******************************************************************************
+   3:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @file    stm32c0xx_hal_flash_ex.c
+   4:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @author  MCD Application Team
+   5:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief   Extended FLASH HAL module driver.
+   6:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *          This file provides firmware functions to manage the following
+   7:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *          functionalities of the FLASH extended peripheral:
+   8:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *           + Extended programming operations functions
+   9:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *
+  10:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   ******************************************************************************
+  11:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @attention
+  12:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *
+  13:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * Copyright (c) 2022 STMicroelectronics.
+  14:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * All rights reserved.
+  15:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *
+  16:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  17:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * in the root directory of this software component.
+  18:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  19:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *
+  20:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   ******************************************************************************
+  21:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****  @verbatim
+  22:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****  ==============================================================================
+  23:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****                    ##### Flash Extended features #####
+  24:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   ==============================================================================
+  25:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  26:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   [..] Comparing to other previous devices, the FLASH interface for STM32C0xx
+  27:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****        devices contains the following additional features
+  28:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  29:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****        (+) Capacity up to 128 Kbytes with single bank architecture supporting read-while-write
+  30:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****            capability (RWW)
+  31:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****        (+) Single bank memory organization
+  32:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****        (+) PCROP protection
+  33:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 2
+
+
+  34:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****                         ##### How to use this driver #####
+  35:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****  ==============================================================================
+  36:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   [..] This driver provides functions to configure and program the FLASH memory
+  37:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****        of all STM32C0xx devices. It includes
+  38:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       (#) Flash Memory Erase functions:
+  39:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****            (++) Lock and Unlock the FLASH interface using HAL_FLASH_Unlock() and
+  40:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****                 HAL_FLASH_Lock() functions
+  41:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****            (++) Erase function: Erase page, erase all sectors
+  42:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****            (++) There are two modes of erase :
+  43:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****              (+++) Polling Mode using HAL_FLASHEx_Erase()
+  44:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****              (+++) Interrupt Mode using HAL_FLASHEx_Erase_IT()
+  45:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  46:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       (#) Option Bytes Programming function: Use HAL_FLASHEx_OBProgram() to :
+  47:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Set/Reset the write protection
+  48:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Set the Read protection Level
+  49:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Program the user Option Bytes
+  50:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Configure the PCROP protection
+  51:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Set Securable memory area and boot entry point
+  52:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  53:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       (#) Get Option Bytes Configuration function: Use HAL_FLASHEx_OBGetConfig() to :
+  54:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Get the value of a write protection area
+  55:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Know if the read protection is activated
+  56:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Get the value of the user Option Bytes
+  57:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         (++) Get Securable memory area and boot entry point information
+  58:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  59:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       (#) Enable or disable debugger usage using HAL_FLASHEx_EnableDebugger and
+  60:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****           HAL_FLASHEx_DisableDebugger.
+  61:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  62:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       (#) Check is flash content is empty or not using HAL_FLASHEx_FlashEmptyCheck.
+  63:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****           and modify this setting (for flash loader purpose e.g.) using
+  64:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****           HAL_FLASHEx_ForceFlashEmpty.
+  65:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  66:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       (#) Enable securable memory area protectionusing HAL_FLASHEx_EnableSecMemProtection
+  67:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  68:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****  @endverbatim
+  69:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   ******************************************************************************
+  70:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+  71:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  72:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /* Includes ------------------------------------------------------------------*/
+  73:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** #include "stm32c0xx_hal.h"
+  74:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  75:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /** @addtogroup STM32C0xx_HAL_Driver
+  76:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @{
+  77:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+  78:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  79:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /** @defgroup FLASHEx FLASHEx
+  80:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief FLASH Extended HAL module driver
+  81:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @{
+  82:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+  83:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  84:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** #ifdef HAL_FLASH_MODULE_ENABLED
+  85:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+  86:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /* Private typedef -----------------------------------------------------------*/
+  87:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /* Private define ------------------------------------------------------------*/
+  88:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /* Private macro -------------------------------------------------------------*/
+  89:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /* Private variables ---------------------------------------------------------*/
+  90:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /* Private function prototypes -----------------------------------------------*/
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 3
+
+
+  91:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /** @defgroup FLASHEx_Private_Functions FLASHEx Private Functions
+  92:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @{
+  93:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+  94:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_MassErase(void);
+  95:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** void                   FLASH_FlushCaches(void);
+  96:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_WRPConfig(uint32_t WRPArea, uint32_t WRPStartOffset, uint32_t WRDPE
+  97:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_OptrConfig(uint32_t UserType, uint32_t UserConfig, uint32_t RDPLeve
+  98:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_PCROP1AConfig(uint32_t PCROPConfig, uint32_t PCROP1AStartAddr, uint
+  99:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_PCROP1BConfig(uint32_t PCROP1BStartAddr, uint32_t PCROP1BEndAddr);
+ 100:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_SecMemConfig(uint32_t BootEntry, uint32_t SecSize);
+ 101:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_GetWRP(uint32_t WRPArea, uint32_t *WRPStartOffset, uint32_t *WRDPEn
+ 102:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static uint32_t        FLASH_OB_GetRDP(void);
+ 103:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static uint32_t        FLASH_OB_GetUser(void);
+ 104:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_GetPCROP1A(uint32_t *PCROPConfig, uint32_t *PCROP1AStartAddr, uint3
+ 105:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_GetPCROP1B(uint32_t *PCROP1BStartAddr, uint32_t *PCROP1BEndAddr);
+ 106:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void            FLASH_OB_GetSecMem(uint32_t *BootEntry, uint32_t *SecSize);
+ 107:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 108:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @}
+ 109:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 110:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 111:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /* Exported functions -------------------------------------------------------*/
+ 112:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /** @defgroup FLASHEx_Exported_Functions FLASH Extended Exported Functions
+ 113:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @{
+ 114:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 115:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 116:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /** @defgroup FLASHEx_Exported_Functions_Group1 Extended IO operation functions
+ 117:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *  @brief   Extended IO operation functions
+ 118:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *
+ 119:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** @verbatim
+ 120:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****  ===============================================================================
+ 121:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****                 ##### Extended programming operation functions #####
+ 122:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****  ===============================================================================
+ 123:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     [..]
+ 124:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     This subsection provides a set of functions allowing to manage the Extended FLASH
+ 125:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     programming operations Operations.
+ 126:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 127:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** @endverbatim
+ 128:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @{
+ 129:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 130:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 131:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Perform a mass erase or erase the specified FLASH memory pages.
+ 132:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param[in]  pEraseInit Pointer to an @ref FLASH_EraseInitTypeDef structure that
+ 133:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         contains the configuration information for the erasing.
+ 134:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param[out]  PageError Pointer to variable that contains the configuration
+ 135:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         information on faulty page in case of error (0xFFFFFFFF means that all
+ 136:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         the pages have been correctly erased)
+ 137:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval HAL Status
+ 138:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 139:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** HAL_StatusTypeDef HAL_FLASHEx_Erase(const FLASH_EraseInitTypeDef *pEraseInit, uint32_t *PageError)
+ 140:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 141:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
+ 142:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t index;
+ 143:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 144:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 145:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_TYPEERASE(pEraseInit->TypeErase));
+ 146:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 147:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Process Locked */
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 4
+
+
+ 148:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   __HAL_LOCK(&pFlash);
+ 149:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 150:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Reset error code */
+ 151:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
+ 152:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 153:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Wait for last operation to be completed */
+ 154:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+ 155:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 156:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if (status == HAL_OK)
+ 157:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 158:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     if (pEraseInit->TypeErase == FLASH_TYPEERASE_MASS)
+ 159:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 160:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /* Mass erase to be done */
+ 161:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       FLASH_MassErase();
+ 162:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 163:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /* Wait for last operation to be completed */
+ 164:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+ 165:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 166:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     else
+ 167:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 168:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /*Initialization of PageError variable*/
+ 169:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       *PageError = 0xFFFFFFFFU;
+ 170:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       for (index = pEraseInit->Page; index < (pEraseInit->Page + pEraseInit->NbPages); index++)
+ 172:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 173:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         /* Start erase page */
+ 174:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         FLASH_PageErase(index);
+ 175:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 176:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         /* Wait for last operation to be completed */
+ 177:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+ 178:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 179:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         if (status != HAL_OK)
+ 180:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         {
+ 181:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****           /* In case of error, stop erase procedure and return the faulty address */
+ 182:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****           *PageError = index;
+ 183:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****           break;
+ 184:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         }
+ 185:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       }
+ 186:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 187:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /* If operation is completed or interrupted, disable the Page Erase Bit */
+ 188:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       CLEAR_BIT(FLASH->CR, FLASH_CR_PER);
+ 189:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 190:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 191:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 192:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Process Unlocked */
+ 193:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   __HAL_UNLOCK(&pFlash);
+ 194:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 195:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* return status */
+ 196:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   return status;
+ 197:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 198:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 199:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 200:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 201:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Perform a mass erase or erase the specified FLASH memory pages with interrupt enabled.
+ 202:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  pEraseInit Pointer to an @ref FLASH_EraseInitTypeDef structure that
+ 203:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         contains the configuration information for the erasing.
+ 204:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval HAL Status
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 5
+
+
+ 205:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 206:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** HAL_StatusTypeDef HAL_FLASHEx_Erase_IT(FLASH_EraseInitTypeDef *pEraseInit)
+ 207:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 208:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
+ 209:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 210:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 211:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_TYPEERASE(pEraseInit->TypeErase));
+ 212:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 213:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Process Locked */
+ 214:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   __HAL_LOCK(&pFlash);
+ 215:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 216:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Reset error code */
+ 217:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
+ 218:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 219:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* save procedure for interrupt treatment */
+ 220:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pFlash.ProcedureOnGoing = pEraseInit->TypeErase;
+ 221:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 222:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Wait for last operation to be completed */
+ 223:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+ 224:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 225:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if (status != HAL_OK)
+ 226:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 227:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Process Unlocked */
+ 228:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     __HAL_UNLOCK(&pFlash);
+ 229:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 230:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   else
+ 231:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 232:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Enable End of Operation and Error interrupts */
+ 233:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     __HAL_FLASH_ENABLE_IT(FLASH_IT_EOP | FLASH_IT_OPERR);
+ 234:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 235:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     if (pEraseInit->TypeErase == FLASH_TYPEERASE_MASS)
+ 236:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 237:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /* Set Page to 0 for Interrupt callback management */
+ 238:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       pFlash.Page = 0;
+ 239:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 240:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /* Proceed to Mass Erase */
+ 241:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       FLASH_MassErase();
+ 242:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 243:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     else
+ 244:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 245:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /* Erase by page to be done */
+ 246:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       pFlash.NbPagesToErase = pEraseInit->NbPages;
+ 247:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       pFlash.Page = pEraseInit->Page;
+ 248:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 249:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /*Erase 1st page and wait for IT */
+ 250:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       FLASH_PageErase(pEraseInit->Page);
+ 251:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 252:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 253:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 254:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* return status */
+ 255:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   return status;
+ 256:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 257:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 258:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 259:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Program Option bytes.
+ 260:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  pOBInit Pointer to an @ref FLASH_OBProgramInitTypeDef structure that
+ 261:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         contains the configuration information for the programming.
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 6
+
+
+ 262:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   To configure any option bytes, the option lock bit OPTLOCK must be
+ 263:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         cleared with the call of @ref HAL_FLASH_OB_Unlock() function.
+ 264:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   New option bytes configuration will be taken into account only
+ 265:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         - after an option bytes launch through the call of @ref HAL_FLASH_OB_Launch()
+ 266:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         - a Power On Reset
+ 267:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         - an exit from Standby or Shutdown mode.
+ 268:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval HAL Status
+ 269:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 270:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** HAL_StatusTypeDef HAL_FLASHEx_OBProgram(FLASH_OBProgramInitTypeDef *pOBInit)
+ 271:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 272:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t optr;
+ 273:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
+ 274:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 275:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 276:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OPTIONBYTE(pOBInit->OptionType));
+ 277:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 278:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Process Locked */
+ 279:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   __HAL_LOCK(&pFlash);
+ 280:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 281:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pFlash.ErrorCode = HAL_FLASH_ERROR_NONE;
+ 282:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 283:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Write protection configuration */
+ 284:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if ((pOBInit->OptionType & OPTIONBYTE_WRP) != 0x00U)
+ 285:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 286:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Configure of Write protection on the selected area */
+ 287:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_WRPConfig(pOBInit->WRPArea, pOBInit->WRPStartOffset, pOBInit->WRPEndOffset);
+ 288:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 289:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 290:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Option register */
+ 291:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if ((pOBInit->OptionType & (OPTIONBYTE_RDP | OPTIONBYTE_USER)) == (OPTIONBYTE_RDP | OPTIONBYTE_US
+ 292:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 293:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Fully modify OPTR register with RDP & user data */
+ 294:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_OptrConfig(pOBInit->USERType, pOBInit->USERConfig, pOBInit->RDPLevel);
+ 295:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 296:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   else if ((pOBInit->OptionType & OPTIONBYTE_RDP) != 0x00U)
+ 297:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 298:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Only modify RDP so get current user data */
+ 299:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     optr = FLASH_OB_GetUser();
+ 300:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_OptrConfig(optr, optr, pOBInit->RDPLevel);
+ 301:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 302:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   else if ((pOBInit->OptionType & OPTIONBYTE_USER) != 0x00U)
+ 303:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 304:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Only modify user so get current RDP level */
+ 305:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     optr = FLASH_OB_GetRDP();
+ 306:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_OptrConfig(pOBInit->USERType, pOBInit->USERConfig, optr);
+ 307:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 308:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   else
+ 309:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 310:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* nothing to do */
+ 311:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 312:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 313:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* PCROP Configuration */
+ 314:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if ((pOBInit->OptionType & OPTIONBYTE_PCROP) != 0x00U)
+ 315:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 316:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Check the parameters */
+ 317:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     assert_param(IS_OB_PCROP_CONFIG(pOBInit->PCROPConfig));
+ 318:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 7
+
+
+ 319:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     if ((pOBInit->PCROPConfig & (OB_PCROP_ZONE_A | OB_PCROP_RDP_ERASE)) != 0x00U)
+ 320:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 321:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /* Configure the 1A Proprietary code readout protection */
+ 322:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       FLASH_OB_PCROP1AConfig(pOBInit->PCROPConfig, pOBInit->PCROP1AStartAddr, pOBInit->PCROP1AEndAd
+ 323:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 324:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 325:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     if ((pOBInit->PCROPConfig & OB_PCROP_ZONE_B) != 0x00U)
+ 326:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 327:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       /* Configure the 1B Proprietary code readout protection */
+ 328:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       FLASH_OB_PCROP1BConfig(pOBInit->PCROP1BStartAddr, pOBInit->PCROP1BEndAddr);
+ 329:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 330:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 331:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 332:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Securable Memory Area Configuration */
+ 333:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if ((pOBInit->OptionType & OPTIONBYTE_SEC) != 0x00U)
+ 334:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 335:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Configure the securable memory area protection */
+ 336:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_SecMemConfig(pOBInit->BootEntryPoint, pOBInit->SecSize);
+ 337:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 338:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 339:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 340:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Wait for last operation to be completed */
+ 341:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+ 342:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 343:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if (status == HAL_OK)
+ 344:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 345:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Set OPTSTRT Bit */
+ 346:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     SET_BIT(FLASH->CR, FLASH_CR_OPTSTRT);
+ 347:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 348:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Wait for last operation to be completed */
+ 349:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     status = FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+ 350:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 351:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* If the option byte program operation is completed, disable the OPTSTRT Bit */
+ 352:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     CLEAR_BIT(FLASH->CR, FLASH_CR_OPTSTRT);
+ 353:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 354:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 355:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Process Unlocked */
+ 356:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   __HAL_UNLOCK(&pFlash);
+ 357:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 358:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* return status */
+ 359:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   return status;
+ 360:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 361:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 362:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 363:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Get the Option bytes configuration.
+ 364:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   warning: this API only read flash register, it does not reflect any
+ 365:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         change that would have been programmed between previous Option byte
+ 366:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         loading and current call.
+ 367:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  pOBInit Pointer to an @ref FLASH_OBProgramInitTypeDef structure that contains the
+ 368:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *                  configuration information. The fields pOBInit->WRPArea and
+ 369:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *                  pOBInit->PCROPConfig should indicate which area is requested
+ 370:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *                  for the WRP and PCROP.
+ 371:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 372:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 373:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** void HAL_FLASHEx_OBGetConfig(FLASH_OBProgramInitTypeDef *pOBInit)
+ 374:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 375:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->OptionType = OPTIONBYTE_ALL;
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 8
+
+
+ 376:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 377:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Get write protection on the selected area */
+ 378:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH_OB_GetWRP(pOBInit->WRPArea, &(pOBInit->WRPStartOffset), &(pOBInit->WRPEndOffset));
+ 379:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 380:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Get Read protection level */
+ 381:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->RDPLevel = FLASH_OB_GetRDP();
+ 382:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 383:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Get the user option bytes */
+ 384:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->USERConfig = FLASH_OB_GetUser();
+ 385:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->USERType = OB_USER_ALL;
+ 386:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 387:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Get the Proprietary code readout protection */
+ 388:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH_OB_GetPCROP1A(&(pOBInit->PCROPConfig), &(pOBInit->PCROP1AStartAddr), &(pOBInit->PCROP1AEndA
+ 389:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH_OB_GetPCROP1B(&(pOBInit->PCROP1BStartAddr), &(pOBInit->PCROP1BEndAddr));
+ 390:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->PCROPConfig |= (OB_PCROP_ZONE_A | OB_PCROP_ZONE_B);
+ 391:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 392:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Get the Securable Memory Area protection */
+ 393:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH_OB_GetSecMem(&(pOBInit->BootEntryPoint), &(pOBInit->SecSize));
+ 394:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 395:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 396:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 397:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Enable Debugger.
+ 398:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   After calling this API, flash interface allow debugger intrusion.
+ 399:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 400:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 401:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** void HAL_FLASHEx_EnableDebugger(void)
+ 402:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 403:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->ACR |= FLASH_ACR_DBG_SWEN;
+ 404:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 405:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 406:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 407:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Disable Debugger.
+ 408:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   After calling this API, Debugger is disabled: it is no more possible to
+ 409:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         break, see CPU register, etc...
+ 410:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 411:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 412:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** void HAL_FLASHEx_DisableDebugger(void)
+ 413:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 414:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->ACR &= ~FLASH_ACR_DBG_SWEN;
+ 415:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 416:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 417:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 418:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Flash Empty check
+ 419:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   This API checks if first location in Flash is programmed or not.
+ 420:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This check is done once by Option Byte Loader.
+ 421:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval 0 if 1st location is not programmed else
+ 422:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 423:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** uint32_t HAL_FLASHEx_FlashEmptyCheck(void)
+ 424:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 425:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   return ((FLASH->ACR & FLASH_ACR_PROGEMPTY));
+ 426:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 427:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 428:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 429:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 430:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Force Empty check value.
+ 431:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   Allows to modify program empty check value in order to force this
+ 432:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         infrmation in Flash Interface, for all next reset that do not launch
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 9
+
+
+ 433:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         Option Byte Loader.
+ 434:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  FlashEmpty this parameter can be a value of @ref FLASHEx_Empty_Check
+ 435:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 436:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 437:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** void HAL_FLASHEx_ForceFlashEmpty(uint32_t FlashEmpty)
+ 438:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 439:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t acr;
+ 440:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_EMPTY_CHECK(FlashEmpty));
+ 441:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 442:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   acr = (FLASH->ACR & ~FLASH_ACR_PROGEMPTY);
+ 443:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->ACR = (acr | FlashEmpty);
+ 444:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 445:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 446:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 447:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Securable memory area protection enable
+ 448:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  Bank Select Bank to be secured. On C0, there is only 1 bank so
+ 449:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         parameter has to be set to 0.
+ 450:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   This API locks Securable memory area which is defined in SEC_SIZE option byte
+ 451:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         (that can be retrieved calling HAL_FLASHEx_OBGetConfig API and checking
+ 452:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         Secsize).
+ 453:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   SEC_PROT bit can only be set, it will be reset by system reset.
+ 454:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 455:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 456:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** void HAL_FLASHEx_EnableSecMemProtection(uint32_t Bank)
+ 457:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 458:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_BANK(Bank));
+ 459:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->CR |= FLASH_CR_SEC_PROT;
+ 460:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 461:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 462:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 463:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @}
+ 464:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 465:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 466:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 467:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @}
+ 468:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 469:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 470:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /* Private functions ---------------------------------------------------------*/
+ 471:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /** @addtogroup FLASHEx_Private_Functions
+ 472:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @{
+ 473:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 474:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 475:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 476:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Mass erase of FLASH memory.
+ 477:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 478:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 479:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_MassErase(void)
+ 480:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+  26              		.loc 1 480 1 view -0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 0
+  29              		@ frame_needed = 0, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+ 481:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Set the Mass Erase Bit and start bit */
+ 482:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->CR |= (FLASH_CR_STRT | FLASH_CR_MER1);
+  31              		.loc 1 482 3 view .LVU1
+  32              		.loc 1 482 13 is_stmt 0 view .LVU2
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 10
+
+
+  33 0000 024A     		ldr	r2, .L2
+  34 0002 5169     		ldr	r1, [r2, #20]
+  35 0004 024B     		ldr	r3, .L2+4
+  36 0006 0B43     		orrs	r3, r1
+  37 0008 5361     		str	r3, [r2, #20]
+ 483:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+  38              		.loc 1 483 1 view .LVU3
+  39              		@ sp needed
+  40 000a 7047     		bx	lr
+  41              	.L3:
+  42              		.align	2
+  43              	.L2:
+  44 000c 00200240 		.word	1073881088
+  45 0010 04000100 		.word	65540
+  46              		.cfi_endproc
+  47              	.LFE223:
+  49              		.section	.text.FLASH_OB_WRPConfig,"ax",%progbits
+  50              		.align	1
+  51              		.syntax unified
+  52              		.code	16
+  53              		.thumb_func
+  55              	FLASH_OB_WRPConfig:
+  56              	.LVL0:
+  57              	.LFB226:
+ 484:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 485:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 486:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Erase the specified FLASH memory page.
+ 487:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  Page FLASH page to erase
+ 488:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter must be a value between 0 and (max number of pages in Flash - 1)
+ 489:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 490:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 491:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** void FLASH_PageErase(uint32_t Page)
+ 492:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 493:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t tmp;
+ 494:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 495:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 496:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_PAGE(Page));
+ 497:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 498:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Get configuration register, then clear page number */
+ 499:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   tmp = (FLASH->CR & ~FLASH_CR_PNB);
+ 500:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 501:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Set page number, Page Erase bit & Start bit */
+ 502:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->CR = (tmp | (FLASH_CR_STRT | (Page <<  FLASH_CR_PNB_Pos) | FLASH_CR_PER));
+ 503:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 504:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 505:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 506:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Flush the instruction cache.
+ 507:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 508:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 509:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** void FLASH_FlushCaches(void)
+ 510:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 511:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Flush instruction cache  */
+ 512:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if (READ_BIT(FLASH->ACR, FLASH_ACR_ICEN) != 0U)
+ 513:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 514:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Disable instruction cache  */
+ 515:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     __HAL_FLASH_INSTRUCTION_CACHE_DISABLE();
+ 516:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Reset instruction cache */
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 11
+
+
+ 517:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     __HAL_FLASH_INSTRUCTION_CACHE_RESET();
+ 518:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Enable instruction cache */
+ 519:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     __HAL_FLASH_INSTRUCTION_CACHE_ENABLE();
+ 520:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 521:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 522:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 523:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 524:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 525:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Configure the write protection of the desired pages.
+ 526:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   When WRP is active in a zone, it cannot be erased or programmed.
+ 527:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         Consequently, a software mass erase cannot be performed if one zone
+ 528:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         is write-protected.
+ 529:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   When the memory read protection level is selected (RDP level = 1),
+ 530:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         it is not possible to program or erase Flash memory if the CPU debug
+ 531:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         features are connected (JTAG or single wire) or boot code is being
+ 532:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         executed from RAM or System flash, even if WRP is not activated.
+ 533:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  WRPArea  Specifies the area to be configured.
+ 534:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be one of the following values:
+ 535:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *            @arg  @ref OB_WRPAREA_ZONE_A Flash Zone A
+ 536:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *            @arg  @ref OB_WRPAREA_ZONE_B Flash Zone B
+ 537:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  WRPStartOffset  Specifies the start page of the write protected area
+ 538:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be page number between 0 and (max number of pages in the Flash - 1)
+ 539:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  WRDPEndOffset  Specifies the end page of the write protected area
+ 540:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be page number between WRPStartOffset and (max number of pages in th
+ 541:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 542:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 543:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_WRPConfig(uint32_t WRPArea, uint32_t WRPStartOffset, uint32_t WRDPEndOffset)
+ 544:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+  58              		.loc 1 544 1 is_stmt 1 view -0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              		@ link register save eliminated.
+ 545:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 546:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OB_WRPAREA(WRPArea));
+  63              		.loc 1 546 3 view .LVU5
+ 547:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_PAGE(WRPStartOffset));
+  64              		.loc 1 547 3 view .LVU6
+ 548:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_PAGE(WRDPEndOffset));
+  65              		.loc 1 548 3 view .LVU7
+ 549:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 550:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Configure the write protected area */
+ 551:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if (WRPArea != OB_WRPAREA_ZONE_A)
+  66              		.loc 1 551 3 view .LVU8
+  67              		.loc 1 551 6 is_stmt 0 view .LVU9
+  68 0000 0128     		cmp	r0, #1
+  69 0002 04D0     		beq	.L5
+ 552:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 553:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH->WRP1BR = ((WRDPEndOffset << FLASH_WRP1AR_WRP1A_END_Pos) | WRPStartOffset);
+  70              		.loc 1 553 5 is_stmt 1 view .LVU10
+  71              		.loc 1 553 37 is_stmt 0 view .LVU11
+  72 0004 1204     		lsls	r2, r2, #16
+  73              	.LVL1:
+  74              		.loc 1 553 68 view .LVU12
+  75 0006 0A43     		orrs	r2, r1
+  76              		.loc 1 553 19 view .LVU13
+  77 0008 034B     		ldr	r3, .L7
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 12
+
+
+  78 000a 1A63     		str	r2, [r3, #48]
+  79              	.L4:
+ 554:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 555:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   else
+ 556:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 557:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH->WRP1AR = ((WRDPEndOffset << FLASH_WRP1BR_WRP1B_END_Pos) | WRPStartOffset);
+ 558:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 559:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+  80              		.loc 1 559 1 view .LVU14
+  81              		@ sp needed
+  82 000c 7047     		bx	lr
+  83              	.LVL2:
+  84              	.L5:
+ 557:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+  85              		.loc 1 557 5 is_stmt 1 view .LVU15
+ 557:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+  86              		.loc 1 557 37 is_stmt 0 view .LVU16
+  87 000e 1204     		lsls	r2, r2, #16
+  88              	.LVL3:
+ 557:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+  89              		.loc 1 557 68 view .LVU17
+  90 0010 0A43     		orrs	r2, r1
+ 557:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+  91              		.loc 1 557 19 view .LVU18
+  92 0012 014B     		ldr	r3, .L7
+  93 0014 DA62     		str	r2, [r3, #44]
+  94              		.loc 1 559 1 view .LVU19
+  95 0016 F9E7     		b	.L4
+  96              	.L8:
+  97              		.align	2
+  98              	.L7:
+  99 0018 00200240 		.word	1073881088
+ 100              		.cfi_endproc
+ 101              	.LFE226:
+ 103              		.section	.text.FLASH_OB_OptrConfig,"ax",%progbits
+ 104              		.align	1
+ 105              		.syntax unified
+ 106              		.code	16
+ 107              		.thumb_func
+ 109              	FLASH_OB_OptrConfig:
+ 110              	.LVL4:
+ 111              	.LFB227:
+ 560:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 561:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 562:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Set user & RDP configuration
+ 563:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   !!! Warning : When enabling OB_RDP level 2 it is no more possible
+ 564:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         to go back to level 1 or 0 !!!
+ 565:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  UserType  The FLASH User Option Bytes to be modified.
+ 566:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be a combination of @ref FLASH_OB_USER_Type
+ 567:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  UserConfig  The FLASH User Option Bytes values.
+ 568:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be a combination of:
+ 569:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_BOR_ENABLE,
+ 570:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_BOR_LEVEL,
+ 571:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_nRST_STOP,
+ 572:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_nRST_STANDBY,
+ 573:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_nRST_SHUTDOWN,
+ 574:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_IWDG_SW,
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 13
+
+
+ 575:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_IWDG_STOP,
+ 576:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_IWDG_STANDBY,
+ 577:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_WWDG_SW,
+ 578:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_SRAM_PARITY,
+ 579:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_nBOOT_SEL,
+ 580:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_nBOOT1,
+ 581:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_nBOOT0,
+ 582:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_INPUT_RESET_HOLDER
+ 583:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_SECURE_MUXING_EN
+ 584:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_HSE_NOT_REMAPPED (*)
+ 585:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  RDPLevel  specifies the read protection level.
+ 586:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be one of the following values:
+ 587:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *            @arg @ref OB_RDP_LEVEL_0 No protection
+ 588:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *            @arg @ref OB_RDP_LEVEL_1 Memory Read protection
+ 589:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *            @arg @ref OB_RDP_LEVEL_2 Full chip protection
+ 590:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 591:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *
+ 592:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   (*) available only on STM32C071xx, STM32C051xx and STM32C091/92xx devices.
+ 593:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 594:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_OptrConfig(uint32_t UserType, uint32_t UserConfig, uint32_t RDPLevel)
+ 595:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 112              		.loc 1 595 1 is_stmt 1 view -0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              		.loc 1 595 1 is_stmt 0 view .LVU21
+ 117 0000 30B5     		push	{r4, r5, lr}
+ 118              	.LCFI0:
+ 119              		.cfi_def_cfa_offset 12
+ 120              		.cfi_offset 4, -12
+ 121              		.cfi_offset 5, -8
+ 122              		.cfi_offset 14, -4
+ 596:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t optr;
+ 123              		.loc 1 596 3 is_stmt 1 view .LVU22
+ 597:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 598:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 599:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OB_USER_TYPE(UserType));
+ 124              		.loc 1 599 3 view .LVU23
+ 600:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OB_USER_CONFIG(UserType, UserConfig));
+ 125              		.loc 1 600 3 view .LVU24
+ 601:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OB_RDP_LEVEL(RDPLevel));
+ 126              		.loc 1 601 3 view .LVU25
+ 602:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 603:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Configure the RDP level in the option bytes register */
+ 604:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   optr = FLASH->OPTR;
+ 127              		.loc 1 604 3 view .LVU26
+ 128              		.loc 1 604 8 is_stmt 0 view .LVU27
+ 129 0002 044C     		ldr	r4, .L10
+ 130 0004 236A     		ldr	r3, [r4, #32]
+ 131              	.LVL5:
+ 605:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   optr &= ~(UserType | FLASH_OPTR_RDP);
+ 132              		.loc 1 605 3 is_stmt 1 view .LVU28
+ 133              		.loc 1 605 22 is_stmt 0 view .LVU29
+ 134 0006 FF25     		movs	r5, #255
+ 135 0008 2843     		orrs	r0, r5
+ 136              	.LVL6:
+ 137              		.loc 1 605 8 view .LVU30
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 14
+
+
+ 138 000a 8343     		bics	r3, r0
+ 139              	.LVL7:
+ 606:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->OPTR = (optr | UserConfig | RDPLevel);
+ 140              		.loc 1 606 3 is_stmt 1 view .LVU31
+ 141              		.loc 1 606 23 is_stmt 0 view .LVU32
+ 142 000c 0B43     		orrs	r3, r1
+ 143              	.LVL8:
+ 144              		.loc 1 606 36 view .LVU33
+ 145 000e 1343     		orrs	r3, r2
+ 146              		.loc 1 606 15 view .LVU34
+ 147 0010 2362     		str	r3, [r4, #32]
+ 607:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 148              		.loc 1 607 1 view .LVU35
+ 149              		@ sp needed
+ 150 0012 30BD     		pop	{r4, r5, pc}
+ 151              	.L11:
+ 152              		.align	2
+ 153              	.L10:
+ 154 0014 00200240 		.word	1073881088
+ 155              		.cfi_endproc
+ 156              	.LFE227:
+ 158              		.section	.text.FLASH_OB_PCROP1AConfig,"ax",%progbits
+ 159              		.align	1
+ 160              		.syntax unified
+ 161              		.code	16
+ 162              		.thumb_func
+ 164              	FLASH_OB_PCROP1AConfig:
+ 165              	.LVL9:
+ 166              	.LFB228:
+ 608:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 609:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 610:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Configure the 1A Proprietary code readout protection & erase configuration on RDP regre
+ 611:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   It is recommended to align PCROP zone with page granularity when using PCROP_RDP or avo
+ 612:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         having some executable code in a page where PCROP zone starts or ends.
+ 613:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   Minimum PCROP area size is 2 times the chosen granularity: PCROPA_STRT and PCROPA_END.
+ 614:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         So if the requirement is to be able to read-protect 1KB areas, the ROP granularity
+ 615:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         has to be set to 512 Bytes
+ 616:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROPConfig  specifies the erase configuration (OB_PCROP_RDP_NOT_ERASE or OB_PCROP_RDP_
+ 617:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         on RDP level 1 regression.
+ 618:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROP1AStartAddr Specifies the Zone 1A Start address of the Proprietary code readout pr
+ 619:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *          This parameter can be an address between begin and end of the flash
+ 620:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROP1AEndAddr Specifies the Zone 1A end address of the Proprietary code readout protec
+ 621:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *          This parameter can be an address between PCROP1AStartAddr and end of the flash
+ 622:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 623:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 624:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_PCROP1AConfig(uint32_t PCROPConfig, uint32_t PCROP1AStartAddr, uint32_t PCROP1
+ 625:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 167              		.loc 1 625 1 is_stmt 1 view -0
+ 168              		.cfi_startproc
+ 169              		@ args = 0, pretend = 0, frame = 0
+ 170              		@ frame_needed = 0, uses_anonymous_args = 0
+ 171              		.loc 1 625 1 is_stmt 0 view .LVU37
+ 172 0000 10B5     		push	{r4, lr}
+ 173              	.LCFI1:
+ 174              		.cfi_def_cfa_offset 8
+ 175              		.cfi_offset 4, -8
+ 176              		.cfi_offset 14, -4
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 15
+
+
+ 626:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t startoffset;
+ 177              		.loc 1 626 3 is_stmt 1 view .LVU38
+ 627:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t endoffset;
+ 178              		.loc 1 627 3 view .LVU39
+ 628:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t pcrop1aend;
+ 179              		.loc 1 628 3 view .LVU40
+ 629:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 630:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 631:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OB_PCROP_CONFIG(PCROPConfig));
+ 180              		.loc 1 631 3 view .LVU41
+ 632:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_MAIN_MEM_ADDRESS(PCROP1AStartAddr));
+ 181              		.loc 1 632 3 view .LVU42
+ 633:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_MAIN_MEM_ADDRESS(PCROP1AEndAddr));
+ 182              		.loc 1 633 3 view .LVU43
+ 634:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 635:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* get pcrop 1A end register */
+ 636:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pcrop1aend = FLASH->PCROP1AER;
+ 183              		.loc 1 636 3 view .LVU44
+ 184              		.loc 1 636 14 is_stmt 0 view .LVU45
+ 185 0002 0C4B     		ldr	r3, .L16
+ 186 0004 9B6A     		ldr	r3, [r3, #40]
+ 187              	.LVL10:
+ 637:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 638:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Configure the Proprietary code readout protection offset */
+ 639:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if ((PCROPConfig & OB_PCROP_ZONE_A) != 0x00U)
+ 188              		.loc 1 639 3 is_stmt 1 view .LVU46
+ 189              		.loc 1 639 6 is_stmt 0 view .LVU47
+ 190 0006 C407     		lsls	r4, r0, #31
+ 191 0008 0BD5     		bpl	.L13
+ 640:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 641:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Compute offset depending on pcrop granularity */
+ 642:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     startoffset = ((PCROP1AStartAddr - FLASH_BASE) >> FLASH_PCROP_GRANULARITY_OFFSET);
+ 192              		.loc 1 642 5 is_stmt 1 view .LVU48
+ 193              		.loc 1 642 38 is_stmt 0 view .LVU49
+ 194 000a F824     		movs	r4, #248
+ 195 000c 2406     		lsls	r4, r4, #24
+ 196 000e A446     		mov	ip, r4
+ 197 0010 6144     		add	r1, r1, ip
+ 198              	.LVL11:
+ 199              		.loc 1 642 17 view .LVU50
+ 200 0012 490A     		lsrs	r1, r1, #9
+ 201              	.LVL12:
+ 643:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     endoffset = ((PCROP1AEndAddr - FLASH_BASE) >> FLASH_PCROP_GRANULARITY_OFFSET);
+ 202              		.loc 1 643 5 is_stmt 1 view .LVU51
+ 203              		.loc 1 643 34 is_stmt 0 view .LVU52
+ 204 0014 6244     		add	r2, r2, ip
+ 205              	.LVL13:
+ 206              		.loc 1 643 15 view .LVU53
+ 207 0016 520A     		lsrs	r2, r2, #9
+ 208              	.LVL14:
+ 644:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 645:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Set Zone A start offset */
+ 646:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH->PCROP1ASR = startoffset;
+ 209              		.loc 1 646 5 is_stmt 1 view .LVU54
+ 210              		.loc 1 646 22 is_stmt 0 view .LVU55
+ 211 0018 064C     		ldr	r4, .L16
+ 212 001a 6162     		str	r1, [r4, #36]
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 16
+
+
+ 647:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 648:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Set Zone A end offset */
+ 649:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     pcrop1aend &= ~FLASH_PCROP1AER_PCROP1A_END;
+ 213              		.loc 1 649 5 is_stmt 1 view .LVU56
+ 214              		.loc 1 649 16 is_stmt 0 view .LVU57
+ 215 001c 3F21     		movs	r1, #63
+ 216              	.LVL15:
+ 217              		.loc 1 649 16 view .LVU58
+ 218 001e 8B43     		bics	r3, r1
+ 219              	.LVL16:
+ 650:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     pcrop1aend |= endoffset;
+ 220              		.loc 1 650 5 is_stmt 1 view .LVU59
+ 221              		.loc 1 650 16 is_stmt 0 view .LVU60
+ 222 0020 1343     		orrs	r3, r2
+ 223              	.LVL17:
+ 224              	.L13:
+ 651:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 652:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 653:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Set RDP erase protection if needed. This bit is only set & will be reset by mass erase */
+ 654:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if ((PCROPConfig & OB_PCROP_RDP_ERASE) != 0x00U)
+ 225              		.loc 1 654 3 is_stmt 1 view .LVU61
+ 226              		.loc 1 654 6 is_stmt 0 view .LVU62
+ 227 0022 0028     		cmp	r0, #0
+ 228 0024 02DB     		blt	.L15
+ 229              	.L14:
+ 655:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 656:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     pcrop1aend |= FLASH_PCROP1AER_PCROP_RDP;
+ 657:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 658:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 659:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* set 1A End register */
+ 660:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->PCROP1AER = pcrop1aend;
+ 230              		.loc 1 660 3 is_stmt 1 view .LVU63
+ 231              		.loc 1 660 20 is_stmt 0 view .LVU64
+ 232 0026 034A     		ldr	r2, .L16
+ 233 0028 9362     		str	r3, [r2, #40]
+ 661:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 234              		.loc 1 661 1 view .LVU65
+ 235              		@ sp needed
+ 236 002a 10BD     		pop	{r4, pc}
+ 237              	.L15:
+ 656:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 238              		.loc 1 656 5 is_stmt 1 view .LVU66
+ 656:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 239              		.loc 1 656 16 is_stmt 0 view .LVU67
+ 240 002c 8022     		movs	r2, #128
+ 241 002e 1206     		lsls	r2, r2, #24
+ 242 0030 1343     		orrs	r3, r2
+ 243              	.LVL18:
+ 656:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 244              		.loc 1 656 16 view .LVU68
+ 245 0032 F8E7     		b	.L14
+ 246              	.L17:
+ 247              		.align	2
+ 248              	.L16:
+ 249 0034 00200240 		.word	1073881088
+ 250              		.cfi_endproc
+ 251              	.LFE228:
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 17
+
+
+ 253              		.section	.text.FLASH_OB_PCROP1BConfig,"ax",%progbits
+ 254              		.align	1
+ 255              		.syntax unified
+ 256              		.code	16
+ 257              		.thumb_func
+ 259              	FLASH_OB_PCROP1BConfig:
+ 260              	.LVL19:
+ 261              	.LFB229:
+ 662:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 663:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 664:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Configure the 1B Proprietary code readout protection.
+ 665:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   It is recommended to align PCROP zone with page granularity when using PCROP_RDP or avo
+ 666:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         having some executable code in a page where PCROP zone starts or ends.
+ 667:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   Minimum PCROP area size is 2 times the chosen granularity: PCROPA_STRT and PCROPA_END.
+ 668:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         So if the requirement is to be able to read-protect 1KB areas, the ROP granularity
+ 669:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         has to be set to 512 Bytes
+ 670:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROP1BStartAddr  Specifies the Zone 1B Start address of the Proprietary code readout p
+ 671:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be an address between begin and end of the flash
+ 672:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROP1BEndAddr  Specifies the Zone 1B end address of the Proprietary code readout prote
+ 673:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be an address between PCROP1BStartAddr and end of the flash
+ 674:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 675:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 676:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_PCROP1BConfig(uint32_t PCROP1BStartAddr, uint32_t PCROP1BEndAddr)
+ 677:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 262              		.loc 1 677 1 is_stmt 1 view -0
+ 263              		.cfi_startproc
+ 264              		@ args = 0, pretend = 0, frame = 0
+ 265              		@ frame_needed = 0, uses_anonymous_args = 0
+ 266              		@ link register save eliminated.
+ 678:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t startoffset;
+ 267              		.loc 1 678 3 view .LVU70
+ 679:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t endoffset;
+ 268              		.loc 1 679 3 view .LVU71
+ 680:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 681:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 682:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_MAIN_MEM_ADDRESS(PCROP1BStartAddr));
+ 269              		.loc 1 682 3 view .LVU72
+ 683:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_MAIN_MEM_ADDRESS(PCROP1BEndAddr));
+ 270              		.loc 1 683 3 view .LVU73
+ 684:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 685:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Configure the Proprietary code readout protection offset */
+ 686:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   startoffset = ((PCROP1BStartAddr - FLASH_BASE) >> FLASH_PCROP_GRANULARITY_OFFSET);
+ 271              		.loc 1 686 3 view .LVU74
+ 272              		.loc 1 686 36 is_stmt 0 view .LVU75
+ 273 0000 F823     		movs	r3, #248
+ 274 0002 1B06     		lsls	r3, r3, #24
+ 275 0004 9C46     		mov	ip, r3
+ 276 0006 6044     		add	r0, r0, ip
+ 277              	.LVL20:
+ 278              		.loc 1 686 15 view .LVU76
+ 279 0008 400A     		lsrs	r0, r0, #9
+ 280              	.LVL21:
+ 687:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   endoffset = ((PCROP1BEndAddr - FLASH_BASE) >> FLASH_PCROP_GRANULARITY_OFFSET);
+ 281              		.loc 1 687 3 is_stmt 1 view .LVU77
+ 282              		.loc 1 687 32 is_stmt 0 view .LVU78
+ 283 000a 6144     		add	r1, r1, ip
+ 284              	.LVL22:
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 18
+
+
+ 285              		.loc 1 687 13 view .LVU79
+ 286 000c 490A     		lsrs	r1, r1, #9
+ 287              	.LVL23:
+ 688:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 689:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Set Zone B start offset */
+ 690:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->PCROP1BSR = startoffset;
+ 288              		.loc 1 690 3 is_stmt 1 view .LVU80
+ 289              		.loc 1 690 20 is_stmt 0 view .LVU81
+ 290 000e 024B     		ldr	r3, .L19
+ 291 0010 5863     		str	r0, [r3, #52]
+ 691:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Set Zone B end offset */
+ 692:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->PCROP1BER = endoffset;
+ 292              		.loc 1 692 3 is_stmt 1 view .LVU82
+ 293              		.loc 1 692 20 is_stmt 0 view .LVU83
+ 294 0012 9963     		str	r1, [r3, #56]
+ 693:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 295              		.loc 1 693 1 view .LVU84
+ 296              		@ sp needed
+ 297 0014 7047     		bx	lr
+ 298              	.L20:
+ 299 0016 C046     		.align	2
+ 300              	.L19:
+ 301 0018 00200240 		.word	1073881088
+ 302              		.cfi_endproc
+ 303              	.LFE229:
+ 305              		.section	.text.FLASH_OB_SecMemConfig,"ax",%progbits
+ 306              		.align	1
+ 307              		.syntax unified
+ 308              		.code	16
+ 309              		.thumb_func
+ 311              	FLASH_OB_SecMemConfig:
+ 312              	.LVL24:
+ 313              	.LFB230:
+ 694:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 695:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 696:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Configure Securable Memory area feature.
+ 697:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  BootEntry  specifies if boot scheme is forced to Flash (System or user) or not
+ 698:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This parameter can be one of the following values:
+ 699:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *           @arg @ref OB_BOOT_ENTRY_FORCED_NONE No boot entry forced
+ 700:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *           @arg @ref OB_BOOT_ENTRY_FORCED_FLASH FLash selected as unique entry boot
+ 701:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  SecSize specifies number of pages to protect as securable memory area, starting from
+ 702:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         beginning of the Flash (page 0).
+ 703:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 704:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 705:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_SecMemConfig(uint32_t BootEntry, uint32_t SecSize)
+ 706:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 314              		.loc 1 706 1 is_stmt 1 view -0
+ 315              		.cfi_startproc
+ 316              		@ args = 0, pretend = 0, frame = 0
+ 317              		@ frame_needed = 0, uses_anonymous_args = 0
+ 318              		.loc 1 706 1 is_stmt 0 view .LVU86
+ 319 0000 30B5     		push	{r4, r5, lr}
+ 320              	.LCFI2:
+ 321              		.cfi_def_cfa_offset 12
+ 322              		.cfi_offset 4, -12
+ 323              		.cfi_offset 5, -8
+ 324              		.cfi_offset 14, -4
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 19
+
+
+ 707:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t secmem;
+ 325              		.loc 1 707 3 is_stmt 1 view .LVU87
+ 708:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 709:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 710:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OB_SEC_BOOT_LOCK(BootEntry));
+ 326              		.loc 1 710 3 view .LVU88
+ 711:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OB_SEC_SIZE(SecSize));
+ 327              		.loc 1 711 3 view .LVU89
+ 712:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 713:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Set securable memory area configuration */
+ 714:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   secmem = (FLASH->SECR & ~(FLASH_SECR_BOOT_LOCK | FLASH_SECR_SEC_SIZE));
+ 328              		.loc 1 714 3 view .LVU90
+ 329              		.loc 1 714 18 is_stmt 0 view .LVU91
+ 330 0002 044C     		ldr	r4, .L22
+ 331 0004 8022     		movs	r2, #128
+ 332 0006 A358     		ldr	r3, [r4, r2]
+ 333              		.loc 1 714 10 view .LVU92
+ 334 0008 034D     		ldr	r5, .L22+4
+ 335 000a 2B40     		ands	r3, r5
+ 336              	.LVL25:
+ 715:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->SECR = (secmem | BootEntry | SecSize);
+ 337              		.loc 1 715 3 is_stmt 1 view .LVU93
+ 338              		.loc 1 715 25 is_stmt 0 view .LVU94
+ 339 000c 0343     		orrs	r3, r0
+ 340              	.LVL26:
+ 341              		.loc 1 715 37 view .LVU95
+ 342 000e 0B43     		orrs	r3, r1
+ 343              		.loc 1 715 15 view .LVU96
+ 344 0010 A350     		str	r3, [r4, r2]
+ 716:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 345              		.loc 1 716 1 view .LVU97
+ 346              		@ sp needed
+ 347 0012 30BD     		pop	{r4, r5, pc}
+ 348              	.L23:
+ 349              		.align	2
+ 350              	.L22:
+ 351 0014 00200240 		.word	1073881088
+ 352 0018 E0FFFEFF 		.word	-65568
+ 353              		.cfi_endproc
+ 354              	.LFE230:
+ 356              		.section	.text.FLASH_OB_GetWRP,"ax",%progbits
+ 357              		.align	1
+ 358              		.syntax unified
+ 359              		.code	16
+ 360              		.thumb_func
+ 362              	FLASH_OB_GetWRP:
+ 363              	.LVL27:
+ 364              	.LFB231:
+ 717:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 718:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 719:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Return the FLASH Write Protection Option Bytes value.
+ 720:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param[in]  WRPArea Specifies the area to be returned.
+ 721:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *             This parameter can be one of the following values:
+ 722:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *               @arg @ref OB_WRPAREA_ZONE_A Flash Zone A
+ 723:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *               @arg @ref OB_WRPAREA_ZONE_B Flash Zone B
+ 724:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param[out]  WRPStartOffset  Specifies the address where to copied the start page
+ 725:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *                         of the write protected area
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 20
+
+
+ 726:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param[out]  WRDPEndOffset  Dpecifies the address where to copied the end page of
+ 727:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *                        the write protected area
+ 728:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 729:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 730:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_GetWRP(uint32_t WRPArea, uint32_t *WRPStartOffset, uint32_t *WRDPEndOffset)
+ 731:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 365              		.loc 1 731 1 is_stmt 1 view -0
+ 366              		.cfi_startproc
+ 367              		@ args = 0, pretend = 0, frame = 0
+ 368              		@ frame_needed = 0, uses_anonymous_args = 0
+ 369              		.loc 1 731 1 is_stmt 0 view .LVU99
+ 370 0000 10B5     		push	{r4, lr}
+ 371              	.LCFI3:
+ 372              		.cfi_def_cfa_offset 8
+ 373              		.cfi_offset 4, -8
+ 374              		.cfi_offset 14, -4
+ 732:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Check the parameters */
+ 733:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_OB_WRPAREA(WRPArea));
+ 375              		.loc 1 733 3 is_stmt 1 view .LVU100
+ 734:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 735:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Get the configuration of the write protected area */
+ 736:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if (WRPArea == OB_WRPAREA_ZONE_A)
+ 376              		.loc 1 736 3 view .LVU101
+ 377              		.loc 1 736 6 is_stmt 0 view .LVU102
+ 378 0002 0128     		cmp	r0, #1
+ 379 0004 09D0     		beq	.L27
+ 737:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 738:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     *WRPStartOffset = READ_BIT(FLASH->WRP1AR, FLASH_WRP1AR_WRP1A_STRT);
+ 739:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     *WRDPEndOffset = (READ_BIT(FLASH->WRP1AR, FLASH_WRP1AR_WRP1A_END) >> FLASH_WRP1AR_WRP1A_END_Pos
+ 740:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 741:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   else
+ 742:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 743:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     *WRPStartOffset = READ_BIT(FLASH->WRP1BR, FLASH_WRP1BR_WRP1B_STRT);
+ 380              		.loc 1 743 5 is_stmt 1 view .LVU103
+ 381              		.loc 1 743 23 is_stmt 0 view .LVU104
+ 382 0006 0A4C     		ldr	r4, .L28
+ 383 0008 206B     		ldr	r0, [r4, #48]
+ 384              	.LVL28:
+ 385              		.loc 1 743 23 view .LVU105
+ 386 000a 0F23     		movs	r3, #15
+ 387 000c 1840     		ands	r0, r3
+ 388              		.loc 1 743 21 view .LVU106
+ 389 000e 0860     		str	r0, [r1]
+ 744:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     *WRDPEndOffset = (READ_BIT(FLASH->WRP1BR, FLASH_WRP1BR_WRP1B_END) >> FLASH_WRP1BR_WRP1B_END_Pos
+ 390              		.loc 1 744 5 is_stmt 1 view .LVU107
+ 391              		.loc 1 744 23 is_stmt 0 view .LVU108
+ 392 0010 216B     		ldr	r1, [r4, #48]
+ 393              	.LVL29:
+ 394              		.loc 1 744 71 view .LVU109
+ 395 0012 090C     		lsrs	r1, r1, #16
+ 396 0014 0B40     		ands	r3, r1
+ 397              		.loc 1 744 20 view .LVU110
+ 398 0016 1360     		str	r3, [r2]
+ 399              	.L24:
+ 745:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 746:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 400              		.loc 1 746 1 view .LVU111
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 21
+
+
+ 401              		@ sp needed
+ 402 0018 10BD     		pop	{r4, pc}
+ 403              	.LVL30:
+ 404              	.L27:
+ 738:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     *WRDPEndOffset = (READ_BIT(FLASH->WRP1AR, FLASH_WRP1AR_WRP1A_END) >> FLASH_WRP1AR_WRP1A_END_Pos
+ 405              		.loc 1 738 5 is_stmt 1 view .LVU112
+ 738:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     *WRDPEndOffset = (READ_BIT(FLASH->WRP1AR, FLASH_WRP1AR_WRP1A_END) >> FLASH_WRP1AR_WRP1A_END_Pos
+ 406              		.loc 1 738 23 is_stmt 0 view .LVU113
+ 407 001a 054C     		ldr	r4, .L28
+ 408 001c E06A     		ldr	r0, [r4, #44]
+ 409              	.LVL31:
+ 738:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     *WRDPEndOffset = (READ_BIT(FLASH->WRP1AR, FLASH_WRP1AR_WRP1A_END) >> FLASH_WRP1AR_WRP1A_END_Pos
+ 410              		.loc 1 738 23 view .LVU114
+ 411 001e 0F23     		movs	r3, #15
+ 412 0020 1840     		ands	r0, r3
+ 738:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     *WRDPEndOffset = (READ_BIT(FLASH->WRP1AR, FLASH_WRP1AR_WRP1A_END) >> FLASH_WRP1AR_WRP1A_END_Pos
+ 413              		.loc 1 738 21 view .LVU115
+ 414 0022 0860     		str	r0, [r1]
+ 739:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 415              		.loc 1 739 5 is_stmt 1 view .LVU116
+ 739:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 416              		.loc 1 739 23 is_stmt 0 view .LVU117
+ 417 0024 E16A     		ldr	r1, [r4, #44]
+ 418              	.LVL32:
+ 739:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 419              		.loc 1 739 71 view .LVU118
+ 420 0026 090C     		lsrs	r1, r1, #16
+ 421 0028 0B40     		ands	r3, r1
+ 739:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 422              		.loc 1 739 20 view .LVU119
+ 423 002a 1360     		str	r3, [r2]
+ 424 002c F4E7     		b	.L24
+ 425              	.L29:
+ 426 002e C046     		.align	2
+ 427              	.L28:
+ 428 0030 00200240 		.word	1073881088
+ 429              		.cfi_endproc
+ 430              	.LFE231:
+ 432              		.section	.text.FLASH_OB_GetRDP,"ax",%progbits
+ 433              		.align	1
+ 434              		.syntax unified
+ 435              		.code	16
+ 436              		.thumb_func
+ 438              	FLASH_OB_GetRDP:
+ 439              	.LFB232:
+ 747:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 748:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 749:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Return the FLASH Read Protection level.
+ 750:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval FLASH ReadOut Protection Status:
+ 751:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         This return value can be one of the following values:
+ 752:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *            @arg @ref OB_RDP_LEVEL_0 No protection
+ 753:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *            @arg @ref OB_RDP_LEVEL_1 Read protection of the memory
+ 754:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *            @arg @ref OB_RDP_LEVEL_2 Full chip protection
+ 755:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 756:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static uint32_t FLASH_OB_GetRDP(void)
+ 757:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 440              		.loc 1 757 1 is_stmt 1 view -0
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 22
+
+
+ 441              		.cfi_startproc
+ 442              		@ args = 0, pretend = 0, frame = 0
+ 443              		@ frame_needed = 0, uses_anonymous_args = 0
+ 444              		@ link register save eliminated.
+ 758:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t rdplvl = READ_BIT(FLASH->OPTR, FLASH_OPTR_RDP);
+ 445              		.loc 1 758 3 view .LVU121
+ 446              		.loc 1 758 21 is_stmt 0 view .LVU122
+ 447 0000 044B     		ldr	r3, .L33
+ 448 0002 1B6A     		ldr	r3, [r3, #32]
+ 449              		.loc 1 758 12 view .LVU123
+ 450 0004 FF20     		movs	r0, #255
+ 451 0006 1840     		ands	r0, r3
+ 452              	.LVL33:
+ 759:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 760:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   if ((rdplvl != OB_RDP_LEVEL_0) && (rdplvl != OB_RDP_LEVEL_2))
+ 453              		.loc 1 760 3 is_stmt 1 view .LVU124
+ 454              		.loc 1 760 6 is_stmt 0 view .LVU125
+ 455 0008 AA28     		cmp	r0, #170
+ 456 000a 02D0     		beq	.L30
+ 457              		.loc 1 760 34 discriminator 1 view .LVU126
+ 458 000c CC28     		cmp	r0, #204
+ 459 000e 00D0     		beq	.L30
+ 761:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 762:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     return (OB_RDP_LEVEL_1);
+ 460              		.loc 1 762 12 view .LVU127
+ 461 0010 BB20     		movs	r0, #187
+ 462              	.LVL34:
+ 463              	.L30:
+ 763:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 764:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   else
+ 765:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 766:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     return rdplvl;
+ 767:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 768:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 464              		.loc 1 768 1 view .LVU128
+ 465              		@ sp needed
+ 466 0012 7047     		bx	lr
+ 467              	.L34:
+ 468              		.align	2
+ 469              	.L33:
+ 470 0014 00200240 		.word	1073881088
+ 471              		.cfi_endproc
+ 472              	.LFE232:
+ 474              		.section	.text.FLASH_OB_GetUser,"ax",%progbits
+ 475              		.align	1
+ 476              		.syntax unified
+ 477              		.code	16
+ 478              		.thumb_func
+ 480              	FLASH_OB_GetUser:
+ 481              	.LFB233:
+ 769:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 770:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 771:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Return the FLASH User Option Byte value.
+ 772:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval The FLASH User Option Bytes values. It will be a combination of all the following value
+ 773:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @arg @ref OB_USER_BOR_ENABLE,
+ 774:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_BOR_LEVEL,
+ 775:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_nRST_STOP,
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 23
+
+
+ 776:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_nRST_STANDBY,
+ 777:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_nRST_SHUTDOWN,
+ 778:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_IWDG_SW,
+ 779:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_IWDG_STOP,
+ 780:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_IWDG_STANDBY,
+ 781:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_WWDG_SW,
+ 782:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_SRAM_PARITY,
+ 783:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_nBOOT_SEL,
+ 784:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_nBOOT1,
+ 785:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_nBOOT0,
+ 786:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_INPUT_RESET_HOLDER
+ 787:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_SECURE_MUXING_EN
+ 788:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         @ref OB_USER_HSE_NOT_REMAPPED (*)
+ 789:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *
+ 790:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @note   (*) available only on STM32C071xx, STM32C051xx and STM32C091/92xx devices.
+ 791:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 792:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static uint32_t FLASH_OB_GetUser(void)
+ 793:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 482              		.loc 1 793 1 is_stmt 1 view -0
+ 483              		.cfi_startproc
+ 484              		@ args = 0, pretend = 0, frame = 0
+ 485              		@ frame_needed = 0, uses_anonymous_args = 0
+ 486              		@ link register save eliminated.
+ 794:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t user = ((FLASH->OPTR & ~FLASH_OPTR_RDP) & OB_USER_ALL);
+ 487              		.loc 1 794 3 view .LVU130
+ 488              		.loc 1 794 26 is_stmt 0 view .LVU131
+ 489 0000 024B     		ldr	r3, .L36
+ 490 0002 186A     		ldr	r0, [r3, #32]
+ 491              		.loc 1 794 12 view .LVU132
+ 492 0004 024B     		ldr	r3, .L36+4
+ 493 0006 1840     		ands	r0, r3
+ 494              	.LVL35:
+ 795:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   return user;
+ 495              		.loc 1 795 3 is_stmt 1 view .LVU133
+ 796:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 496              		.loc 1 796 1 is_stmt 0 view .LVU134
+ 497              		@ sp needed
+ 498 0008 7047     		bx	lr
+ 499              	.L37:
+ 500 000a C046     		.align	2
+ 501              	.L36:
+ 502 000c 00200240 		.word	1073881088
+ 503 0010 00FFEF3F 		.word	1072692992
+ 504              		.cfi_endproc
+ 505              	.LFE233:
+ 507              		.section	.text.FLASH_OB_GetPCROP1A,"ax",%progbits
+ 508              		.align	1
+ 509              		.syntax unified
+ 510              		.code	16
+ 511              		.thumb_func
+ 513              	FLASH_OB_GetPCROP1A:
+ 514              	.LVL36:
+ 515              	.LFB234:
+ 797:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 798:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 799:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Return the FLASH PCROP Protection Option Bytes value.
+ 800:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROPConfig [out]  specifies the configuration of PCROP_RDP option.
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 24
+
+
+ 801:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROP1AStartAddr [out]  Specifies the address where to copied the start address
+ 802:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         of the 1A Proprietary code readout protection
+ 803:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROP1AEndAddr [out]  Specifies the address where to copied the end address of
+ 804:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         the 1A Proprietary code readout protection
+ 805:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 806:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 807:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_GetPCROP1A(uint32_t *PCROPConfig, uint32_t *PCROP1AStartAddr, uint32_t *PCROP1
+ 808:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 516              		.loc 1 808 1 is_stmt 1 view -0
+ 517              		.cfi_startproc
+ 518              		@ args = 0, pretend = 0, frame = 0
+ 519              		@ frame_needed = 0, uses_anonymous_args = 0
+ 520              		.loc 1 808 1 is_stmt 0 view .LVU136
+ 521 0000 70B5     		push	{r4, r5, r6, lr}
+ 522              	.LCFI4:
+ 523              		.cfi_def_cfa_offset 16
+ 524              		.cfi_offset 4, -16
+ 525              		.cfi_offset 5, -12
+ 526              		.cfi_offset 6, -8
+ 527              		.cfi_offset 14, -4
+ 809:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t pcrop;
+ 528              		.loc 1 809 3 is_stmt 1 view .LVU137
+ 810:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 811:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pcrop = (FLASH->PCROP1ASR & FLASH_PCROP1ASR_PCROP1A_STRT);
+ 529              		.loc 1 811 3 view .LVU138
+ 530              		.loc 1 811 17 is_stmt 0 view .LVU139
+ 531 0002 0E4D     		ldr	r5, .L39
+ 532 0004 6B6A     		ldr	r3, [r5, #36]
+ 533              	.LVL37:
+ 812:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROP1AStartAddr = (pcrop << FLASH_PCROP_GRANULARITY_OFFSET);
+ 534              		.loc 1 812 3 is_stmt 1 view .LVU140
+ 535              		.loc 1 812 30 is_stmt 0 view .LVU141
+ 536 0006 5B02     		lsls	r3, r3, #9
+ 537              	.LVL38:
+ 538              		.loc 1 812 30 view .LVU142
+ 539 0008 FC24     		movs	r4, #252
+ 540 000a E401     		lsls	r4, r4, #7
+ 541 000c 2340     		ands	r3, r4
+ 542              		.loc 1 812 21 view .LVU143
+ 543 000e 0B60     		str	r3, [r1]
+ 813:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROP1AStartAddr += FLASH_BASE;
+ 544              		.loc 1 813 3 is_stmt 1 view .LVU144
+ 545              		.loc 1 813 21 is_stmt 0 view .LVU145
+ 546 0010 8026     		movs	r6, #128
+ 547 0012 3605     		lsls	r6, r6, #20
+ 548 0014 B446     		mov	ip, r6
+ 549 0016 6344     		add	r3, r3, ip
+ 550 0018 0B60     		str	r3, [r1]
+ 814:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 815:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pcrop = FLASH->PCROP1AER;
+ 551              		.loc 1 815 3 is_stmt 1 view .LVU146
+ 552              		.loc 1 815 9 is_stmt 0 view .LVU147
+ 553 001a A96A     		ldr	r1, [r5, #40]
+ 554              	.LVL39:
+ 816:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROP1AEndAddr = ((pcrop & FLASH_PCROP1AER_PCROP1A_END) << FLASH_PCROP_GRANULARITY_OFFSET);
+ 555              		.loc 1 816 3 is_stmt 1 view .LVU148
+ 556              		.loc 1 816 60 is_stmt 0 view .LVU149
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 25
+
+
+ 557 001c 4B02     		lsls	r3, r1, #9
+ 558 001e 2340     		ands	r3, r4
+ 559              		.loc 1 816 19 view .LVU150
+ 560 0020 1360     		str	r3, [r2]
+ 817:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROP1AEndAddr += (FLASH_BASE + FLASH_PCROP_GRANULARITY - 1U);
+ 561              		.loc 1 817 3 is_stmt 1 view .LVU151
+ 562              		.loc 1 817 19 is_stmt 0 view .LVU152
+ 563 0022 074C     		ldr	r4, .L39+4
+ 564 0024 A446     		mov	ip, r4
+ 565 0026 6344     		add	r3, r3, ip
+ 566 0028 1360     		str	r3, [r2]
+ 818:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 819:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROPConfig &= ~OB_PCROP_RDP_ERASE;
+ 567              		.loc 1 819 3 is_stmt 1 view .LVU153
+ 568              		.loc 1 819 16 is_stmt 0 view .LVU154
+ 569 002a 0368     		ldr	r3, [r0]
+ 570 002c 5B00     		lsls	r3, r3, #1
+ 571 002e 5B08     		lsrs	r3, r3, #1
+ 572 0030 0360     		str	r3, [r0]
+ 820:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROPConfig |= (pcrop & FLASH_PCROP1AER_PCROP_RDP);
+ 573              		.loc 1 820 3 is_stmt 1 view .LVU155
+ 574              		.loc 1 820 26 is_stmt 0 view .LVU156
+ 575 0032 C90F     		lsrs	r1, r1, #31
+ 576              	.LVL40:
+ 577              		.loc 1 820 26 view .LVU157
+ 578 0034 C907     		lsls	r1, r1, #31
+ 579              		.loc 1 820 16 view .LVU158
+ 580 0036 0B43     		orrs	r3, r1
+ 581 0038 0360     		str	r3, [r0]
+ 821:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 582              		.loc 1 821 1 view .LVU159
+ 583              		@ sp needed
+ 584 003a 70BD     		pop	{r4, r5, r6, pc}
+ 585              	.L40:
+ 586              		.align	2
+ 587              	.L39:
+ 588 003c 00200240 		.word	1073881088
+ 589 0040 FF010008 		.word	134218239
+ 590              		.cfi_endproc
+ 591              	.LFE234:
+ 593              		.section	.text.FLASH_OB_GetPCROP1B,"ax",%progbits
+ 594              		.align	1
+ 595              		.syntax unified
+ 596              		.code	16
+ 597              		.thumb_func
+ 599              	FLASH_OB_GetPCROP1B:
+ 600              	.LVL41:
+ 601              	.LFB235:
+ 822:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 823:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 824:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 825:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Return the FLASH PCROP Protection Option Bytes value.
+ 826:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROP1BStartAddr [out]  Specifies the address where to copied the start address
+ 827:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         of the 1B Proprietary code readout protection
+ 828:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  PCROP1BEndAddr [out]  Specifies the address where to copied the end address of
+ 829:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         the 1B Proprietary code readout protection
+ 830:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 26
+
+
+ 831:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 832:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_GetPCROP1B(uint32_t *PCROP1BStartAddr, uint32_t *PCROP1BEndAddr)
+ 833:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 602              		.loc 1 833 1 is_stmt 1 view -0
+ 603              		.cfi_startproc
+ 604              		@ args = 0, pretend = 0, frame = 0
+ 605              		@ frame_needed = 0, uses_anonymous_args = 0
+ 606              		.loc 1 833 1 is_stmt 0 view .LVU161
+ 607 0000 30B5     		push	{r4, r5, lr}
+ 608              	.LCFI5:
+ 609              		.cfi_def_cfa_offset 12
+ 610              		.cfi_offset 4, -12
+ 611              		.cfi_offset 5, -8
+ 612              		.cfi_offset 14, -4
+ 834:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t pcrop;
+ 613              		.loc 1 834 3 is_stmt 1 view .LVU162
+ 835:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 836:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pcrop = (FLASH->PCROP1BSR & FLASH_PCROP1BSR_PCROP1B_STRT);
+ 614              		.loc 1 836 3 view .LVU163
+ 615              		.loc 1 836 17 is_stmt 0 view .LVU164
+ 616 0002 0A4B     		ldr	r3, .L42
+ 617 0004 5A6B     		ldr	r2, [r3, #52]
+ 618              	.LVL42:
+ 837:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROP1BStartAddr = (pcrop << FLASH_PCROP_GRANULARITY_OFFSET);
+ 619              		.loc 1 837 3 is_stmt 1 view .LVU165
+ 620              		.loc 1 837 30 is_stmt 0 view .LVU166
+ 621 0006 5202     		lsls	r2, r2, #9
+ 622              	.LVL43:
+ 623              		.loc 1 837 30 view .LVU167
+ 624 0008 FC24     		movs	r4, #252
+ 625 000a E401     		lsls	r4, r4, #7
+ 626 000c 2240     		ands	r2, r4
+ 627              		.loc 1 837 21 view .LVU168
+ 628 000e 0260     		str	r2, [r0]
+ 838:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROP1BStartAddr += FLASH_BASE;
+ 629              		.loc 1 838 3 is_stmt 1 view .LVU169
+ 630              		.loc 1 838 21 is_stmt 0 view .LVU170
+ 631 0010 8025     		movs	r5, #128
+ 632 0012 2D05     		lsls	r5, r5, #20
+ 633 0014 AC46     		mov	ip, r5
+ 634 0016 6244     		add	r2, r2, ip
+ 635 0018 0260     		str	r2, [r0]
+ 839:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 840:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pcrop = (FLASH->PCROP1BER & FLASH_PCROP1BER_PCROP1B_END);
+ 636              		.loc 1 840 3 is_stmt 1 view .LVU171
+ 637              		.loc 1 840 17 is_stmt 0 view .LVU172
+ 638 001a 9B6B     		ldr	r3, [r3, #56]
+ 639              	.LVL44:
+ 841:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROP1BEndAddr = (pcrop << FLASH_PCROP_GRANULARITY_OFFSET);
+ 640              		.loc 1 841 3 is_stmt 1 view .LVU173
+ 641              		.loc 1 841 28 is_stmt 0 view .LVU174
+ 642 001c 5B02     		lsls	r3, r3, #9
+ 643              	.LVL45:
+ 644              		.loc 1 841 28 view .LVU175
+ 645 001e 2340     		ands	r3, r4
+ 646              		.loc 1 841 19 view .LVU176
+ 647 0020 0B60     		str	r3, [r1]
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 27
+
+
+ 842:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *PCROP1BEndAddr += (FLASH_BASE + FLASH_PCROP_GRANULARITY - 1U);
+ 648              		.loc 1 842 3 is_stmt 1 view .LVU177
+ 649              		.loc 1 842 19 is_stmt 0 view .LVU178
+ 650 0022 034A     		ldr	r2, .L42+4
+ 651 0024 9446     		mov	ip, r2
+ 652 0026 6344     		add	r3, r3, ip
+ 653 0028 0B60     		str	r3, [r1]
+ 843:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 654              		.loc 1 843 1 view .LVU179
+ 655              		@ sp needed
+ 656 002a 30BD     		pop	{r4, r5, pc}
+ 657              	.L43:
+ 658              		.align	2
+ 659              	.L42:
+ 660 002c 00200240 		.word	1073881088
+ 661 0030 FF010008 		.word	134218239
+ 662              		.cfi_endproc
+ 663              	.LFE235:
+ 665              		.section	.text.FLASH_OB_GetSecMem,"ax",%progbits
+ 666              		.align	1
+ 667              		.syntax unified
+ 668              		.code	16
+ 669              		.thumb_func
+ 671              	FLASH_OB_GetSecMem:
+ 672              	.LVL46:
+ 673              	.LFB236:
+ 844:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 845:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** /**
+ 846:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @brief  Return the FLASH Securable memory area protection Option Bytes value.
+ 847:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  BootEntry  specifies boot scheme configuration
+ 848:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @param  SecSize specifies number of pages to protect as secure memory area, starting from
+ 849:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *         beginning of the Flash (page 0).
+ 850:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   * @retval None
+ 851:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   */
+ 852:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** static void FLASH_OB_GetSecMem(uint32_t *BootEntry, uint32_t *SecSize)
+ 853:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** {
+ 674              		.loc 1 853 1 is_stmt 1 view -0
+ 675              		.cfi_startproc
+ 676              		@ args = 0, pretend = 0, frame = 0
+ 677              		@ frame_needed = 0, uses_anonymous_args = 0
+ 678              		.loc 1 853 1 is_stmt 0 view .LVU181
+ 679 0000 10B5     		push	{r4, lr}
+ 680              	.LCFI6:
+ 681              		.cfi_def_cfa_offset 8
+ 682              		.cfi_offset 4, -8
+ 683              		.cfi_offset 14, -4
+ 854:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t secmem = FLASH->SECR;
+ 684              		.loc 1 854 3 is_stmt 1 view .LVU182
+ 685              		.loc 1 854 12 is_stmt 0 view .LVU183
+ 686 0002 054A     		ldr	r2, .L45
+ 687 0004 8023     		movs	r3, #128
+ 688 0006 D458     		ldr	r4, [r2, r3]
+ 689              	.LVL47:
+ 855:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 856:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *BootEntry = (secmem & FLASH_SECR_BOOT_LOCK);
+ 690              		.loc 1 856 3 is_stmt 1 view .LVU184
+ 691              		.loc 1 856 24 is_stmt 0 view .LVU185
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 28
+
+
+ 692 0008 8022     		movs	r2, #128
+ 693 000a 5202     		lsls	r2, r2, #9
+ 694 000c 2240     		ands	r2, r4
+ 695              		.loc 1 856 14 view .LVU186
+ 696 000e 0260     		str	r2, [r0]
+ 857:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   *SecSize = (secmem & FLASH_SECR_SEC_SIZE);
+ 697              		.loc 1 857 3 is_stmt 1 view .LVU187
+ 698              		.loc 1 857 22 is_stmt 0 view .LVU188
+ 699 0010 613B     		subs	r3, r3, #97
+ 700 0012 2340     		ands	r3, r4
+ 701              		.loc 1 857 12 view .LVU189
+ 702 0014 0B60     		str	r3, [r1]
+ 858:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 703              		.loc 1 858 1 view .LVU190
+ 704              		@ sp needed
+ 705              	.LVL48:
+ 706              		.loc 1 858 1 view .LVU191
+ 707 0016 10BD     		pop	{r4, pc}
+ 708              	.L46:
+ 709              		.align	2
+ 710              	.L45:
+ 711 0018 00200240 		.word	1073881088
+ 712              		.cfi_endproc
+ 713              	.LFE236:
+ 715              		.section	.text.HAL_FLASHEx_OBProgram,"ax",%progbits
+ 716              		.align	1
+ 717              		.global	HAL_FLASHEx_OBProgram
+ 718              		.syntax unified
+ 719              		.code	16
+ 720              		.thumb_func
+ 722              	HAL_FLASHEx_OBProgram:
+ 723              	.LVL49:
+ 724              	.LFB216:
+ 271:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t optr;
+ 725              		.loc 1 271 1 is_stmt 1 view -0
+ 726              		.cfi_startproc
+ 727              		@ args = 0, pretend = 0, frame = 0
+ 728              		@ frame_needed = 0, uses_anonymous_args = 0
+ 271:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t optr;
+ 729              		.loc 1 271 1 is_stmt 0 view .LVU193
+ 730 0000 10B5     		push	{r4, lr}
+ 731              	.LCFI7:
+ 732              		.cfi_def_cfa_offset 8
+ 733              		.cfi_offset 4, -8
+ 734              		.cfi_offset 14, -4
+ 735 0002 0400     		movs	r4, r0
+ 272:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
+ 736              		.loc 1 272 3 is_stmt 1 view .LVU194
+ 273:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 737              		.loc 1 273 3 view .LVU195
+ 276:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 738              		.loc 1 276 3 view .LVU196
+ 279:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 739              		.loc 1 279 3 view .LVU197
+ 279:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 740              		.loc 1 279 3 view .LVU198
+ 741 0004 334B     		ldr	r3, .L66
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 29
+
+
+ 742 0006 1B78     		ldrb	r3, [r3]
+ 743 0008 012B     		cmp	r3, #1
+ 744 000a 60D0     		beq	.L57
+ 279:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 745              		.loc 1 279 3 discriminator 2 view .LVU199
+ 746 000c 314A     		ldr	r2, .L66
+ 747 000e 0123     		movs	r3, #1
+ 748 0010 1370     		strb	r3, [r2]
+ 279:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 749              		.loc 1 279 3 discriminator 2 view .LVU200
+ 281:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 750              		.loc 1 281 3 discriminator 2 view .LVU201
+ 281:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 751              		.loc 1 281 20 is_stmt 0 discriminator 2 view .LVU202
+ 752 0012 0021     		movs	r1, #0
+ 753 0014 5160     		str	r1, [r2, #4]
+ 284:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 754              		.loc 1 284 3 is_stmt 1 discriminator 2 view .LVU203
+ 284:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 755              		.loc 1 284 6 is_stmt 0 discriminator 2 view .LVU204
+ 756 0016 0268     		ldr	r2, [r0]
+ 757 0018 1342     		tst	r3, r2
+ 758 001a 1FD1     		bne	.L58
+ 759              	.LVL50:
+ 760              	.L49:
+ 291:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 761              		.loc 1 291 3 is_stmt 1 view .LVU205
+ 291:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 762              		.loc 1 291 15 is_stmt 0 view .LVU206
+ 763 001c 2268     		ldr	r2, [r4]
+ 291:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 764              		.loc 1 291 28 view .LVU207
+ 765 001e 0623     		movs	r3, #6
+ 766 0020 1340     		ands	r3, r2
+ 291:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 767              		.loc 1 291 6 view .LVU208
+ 768 0022 062B     		cmp	r3, #6
+ 769 0024 20D0     		beq	.L59
+ 296:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 770              		.loc 1 296 8 is_stmt 1 view .LVU209
+ 296:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 771              		.loc 1 296 11 is_stmt 0 view .LVU210
+ 772 0026 9307     		lsls	r3, r2, #30
+ 773 0028 24D4     		bmi	.L60
+ 302:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 774              		.loc 1 302 8 is_stmt 1 view .LVU211
+ 302:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 775              		.loc 1 302 11 is_stmt 0 view .LVU212
+ 776 002a 5307     		lsls	r3, r2, #29
+ 777 002c 29D4     		bmi	.L61
+ 778              	.L51:
+ 311:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 779              		.loc 1 311 3 is_stmt 1 view .LVU213
+ 314:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 780              		.loc 1 314 3 view .LVU214
+ 314:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 781              		.loc 1 314 6 is_stmt 0 view .LVU215
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 30
+
+
+ 782 002e 2368     		ldr	r3, [r4]
+ 783 0030 1B07     		lsls	r3, r3, #28
+ 784 0032 06D5     		bpl	.L53
+ 317:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 785              		.loc 1 317 5 is_stmt 1 view .LVU216
+ 319:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 786              		.loc 1 319 5 view .LVU217
+ 319:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 787              		.loc 1 319 17 is_stmt 0 view .LVU218
+ 788 0034 E069     		ldr	r0, [r4, #28]
+ 319:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 789              		.loc 1 319 31 view .LVU219
+ 790 0036 284B     		ldr	r3, .L66+4
+ 319:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 791              		.loc 1 319 8 view .LVU220
+ 792 0038 1842     		tst	r0, r3
+ 793 003a 2AD1     		bne	.L62
+ 794              	.L54:
+ 325:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 795              		.loc 1 325 5 is_stmt 1 view .LVU221
+ 325:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 796              		.loc 1 325 8 is_stmt 0 view .LVU222
+ 797 003c E369     		ldr	r3, [r4, #28]
+ 798 003e 9B07     		lsls	r3, r3, #30
+ 799 0040 2CD4     		bmi	.L63
+ 800              	.L53:
+ 333:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 801              		.loc 1 333 3 is_stmt 1 view .LVU223
+ 333:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 802              		.loc 1 333 6 is_stmt 0 view .LVU224
+ 803 0042 2368     		ldr	r3, [r4]
+ 804 0044 DB06     		lsls	r3, r3, #27
+ 805 0046 2ED4     		bmi	.L64
+ 806              	.L55:
+ 341:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 807              		.loc 1 341 3 is_stmt 1 view .LVU225
+ 341:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 808              		.loc 1 341 12 is_stmt 0 view .LVU226
+ 809 0048 FA20     		movs	r0, #250
+ 810 004a 8000     		lsls	r0, r0, #2
+ 811 004c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 812              	.LVL51:
+ 343:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 813              		.loc 1 343 3 is_stmt 1 view .LVU227
+ 343:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 814              		.loc 1 343 6 is_stmt 0 view .LVU228
+ 815 0050 0028     		cmp	r0, #0
+ 816 0052 2DD0     		beq	.L65
+ 817              	.LVL52:
+ 818              	.L56:
+ 356:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 819              		.loc 1 356 3 is_stmt 1 view .LVU229
+ 356:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 820              		.loc 1 356 3 view .LVU230
+ 821 0054 1F4B     		ldr	r3, .L66
+ 822 0056 0022     		movs	r2, #0
+ 823 0058 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 31
+
+
+ 356:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 824              		.loc 1 356 3 view .LVU231
+ 359:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 825              		.loc 1 359 3 view .LVU232
+ 826              	.LVL53:
+ 827              	.L48:
+ 360:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 828              		.loc 1 360 1 is_stmt 0 view .LVU233
+ 829              		@ sp needed
+ 830 005a 10BD     		pop	{r4, pc}
+ 831              	.LVL54:
+ 832              	.L58:
+ 287:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 833              		.loc 1 287 5 is_stmt 1 view .LVU234
+ 834 005c C268     		ldr	r2, [r0, #12]
+ 835 005e 8168     		ldr	r1, [r0, #8]
+ 836 0060 4068     		ldr	r0, [r0, #4]
+ 837              	.LVL55:
+ 287:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 838              		.loc 1 287 5 is_stmt 0 view .LVU235
+ 839 0062 FFF7FEFF 		bl	FLASH_OB_WRPConfig
+ 840              	.LVL56:
+ 841 0066 D9E7     		b	.L49
+ 842              	.L59:
+ 294:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 843              		.loc 1 294 5 is_stmt 1 view .LVU236
+ 844 0068 2269     		ldr	r2, [r4, #16]
+ 845 006a A169     		ldr	r1, [r4, #24]
+ 846 006c 6069     		ldr	r0, [r4, #20]
+ 847 006e FFF7FEFF 		bl	FLASH_OB_OptrConfig
+ 848              	.LVL57:
+ 849 0072 DCE7     		b	.L51
+ 850              	.L60:
+ 299:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_OptrConfig(optr, optr, pOBInit->RDPLevel);
+ 851              		.loc 1 299 5 view .LVU237
+ 299:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_OptrConfig(optr, optr, pOBInit->RDPLevel);
+ 852              		.loc 1 299 12 is_stmt 0 view .LVU238
+ 853 0074 FFF7FEFF 		bl	FLASH_OB_GetUser
+ 854              	.LVL58:
+ 300:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 855              		.loc 1 300 5 is_stmt 1 view .LVU239
+ 856 0078 2269     		ldr	r2, [r4, #16]
+ 857 007a 0100     		movs	r1, r0
+ 858 007c FFF7FEFF 		bl	FLASH_OB_OptrConfig
+ 859              	.LVL59:
+ 300:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 860              		.loc 1 300 5 is_stmt 0 view .LVU240
+ 861 0080 D5E7     		b	.L51
+ 862              	.L61:
+ 305:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_OptrConfig(pOBInit->USERType, pOBInit->USERConfig, optr);
+ 863              		.loc 1 305 5 is_stmt 1 view .LVU241
+ 305:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     FLASH_OB_OptrConfig(pOBInit->USERType, pOBInit->USERConfig, optr);
+ 864              		.loc 1 305 12 is_stmt 0 view .LVU242
+ 865 0082 FFF7FEFF 		bl	FLASH_OB_GetRDP
+ 866              	.LVL60:
+ 867 0086 0200     		movs	r2, r0
+ 868              	.LVL61:
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 32
+
+
+ 306:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 869              		.loc 1 306 5 is_stmt 1 view .LVU243
+ 870 0088 A169     		ldr	r1, [r4, #24]
+ 871 008a 6069     		ldr	r0, [r4, #20]
+ 872              	.LVL62:
+ 306:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 873              		.loc 1 306 5 is_stmt 0 view .LVU244
+ 874 008c FFF7FEFF 		bl	FLASH_OB_OptrConfig
+ 875              	.LVL63:
+ 306:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 876              		.loc 1 306 5 view .LVU245
+ 877 0090 CDE7     		b	.L51
+ 878              	.L62:
+ 322:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 879              		.loc 1 322 7 is_stmt 1 view .LVU246
+ 880 0092 626A     		ldr	r2, [r4, #36]
+ 881 0094 216A     		ldr	r1, [r4, #32]
+ 882 0096 FFF7FEFF 		bl	FLASH_OB_PCROP1AConfig
+ 883              	.LVL64:
+ 884 009a CFE7     		b	.L54
+ 885              	.L63:
+ 328:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 886              		.loc 1 328 7 view .LVU247
+ 887 009c E16A     		ldr	r1, [r4, #44]
+ 888 009e A06A     		ldr	r0, [r4, #40]
+ 889 00a0 FFF7FEFF 		bl	FLASH_OB_PCROP1BConfig
+ 890              	.LVL65:
+ 891 00a4 CDE7     		b	.L53
+ 892              	.L64:
+ 336:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 893              		.loc 1 336 5 view .LVU248
+ 894 00a6 616B     		ldr	r1, [r4, #52]
+ 895 00a8 206B     		ldr	r0, [r4, #48]
+ 896 00aa FFF7FEFF 		bl	FLASH_OB_SecMemConfig
+ 897              	.LVL66:
+ 898 00ae CBE7     		b	.L55
+ 899              	.LVL67:
+ 900              	.L65:
+ 346:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 901              		.loc 1 346 5 view .LVU249
+ 902 00b0 0A4C     		ldr	r4, .L66+8
+ 903              	.LVL68:
+ 346:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 904              		.loc 1 346 5 is_stmt 0 view .LVU250
+ 905 00b2 6269     		ldr	r2, [r4, #20]
+ 906 00b4 8023     		movs	r3, #128
+ 907 00b6 9B02     		lsls	r3, r3, #10
+ 908 00b8 1343     		orrs	r3, r2
+ 909 00ba 6361     		str	r3, [r4, #20]
+ 349:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 910              		.loc 1 349 5 is_stmt 1 view .LVU251
+ 349:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 911              		.loc 1 349 14 is_stmt 0 view .LVU252
+ 912 00bc FA30     		adds	r0, r0, #250
+ 913              	.LVL69:
+ 349:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 914              		.loc 1 349 14 view .LVU253
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 33
+
+
+ 915 00be 8000     		lsls	r0, r0, #2
+ 916              	.LVL70:
+ 349:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 917              		.loc 1 349 14 view .LVU254
+ 918 00c0 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 919              	.LVL71:
+ 352:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 920              		.loc 1 352 5 is_stmt 1 view .LVU255
+ 921 00c4 6369     		ldr	r3, [r4, #20]
+ 922 00c6 064A     		ldr	r2, .L66+12
+ 923 00c8 1340     		ands	r3, r2
+ 924 00ca 6361     		str	r3, [r4, #20]
+ 925 00cc C2E7     		b	.L56
+ 926              	.LVL72:
+ 927              	.L57:
+ 279:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 928              		.loc 1 279 3 is_stmt 0 view .LVU256
+ 929 00ce 0220     		movs	r0, #2
+ 930              	.LVL73:
+ 279:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 931              		.loc 1 279 3 view .LVU257
+ 932 00d0 C3E7     		b	.L48
+ 933              	.L67:
+ 934 00d2 C046     		.align	2
+ 935              	.L66:
+ 936 00d4 00000000 		.word	pFlash
+ 937 00d8 01000080 		.word	-2147483647
+ 938 00dc 00200240 		.word	1073881088
+ 939 00e0 FFFFFDFF 		.word	-131073
+ 940              		.cfi_endproc
+ 941              	.LFE216:
+ 943              		.section	.text.HAL_FLASHEx_OBGetConfig,"ax",%progbits
+ 944              		.align	1
+ 945              		.global	HAL_FLASHEx_OBGetConfig
+ 946              		.syntax unified
+ 947              		.code	16
+ 948              		.thumb_func
+ 950              	HAL_FLASHEx_OBGetConfig:
+ 951              	.LVL74:
+ 952              	.LFB217:
+ 374:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->OptionType = OPTIONBYTE_ALL;
+ 953              		.loc 1 374 1 is_stmt 1 view -0
+ 954              		.cfi_startproc
+ 955              		@ args = 0, pretend = 0, frame = 0
+ 956              		@ frame_needed = 0, uses_anonymous_args = 0
+ 374:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->OptionType = OPTIONBYTE_ALL;
+ 957              		.loc 1 374 1 is_stmt 0 view .LVU259
+ 958 0000 10B5     		push	{r4, lr}
+ 959              	.LCFI8:
+ 960              		.cfi_def_cfa_offset 8
+ 961              		.cfi_offset 4, -8
+ 962              		.cfi_offset 14, -4
+ 963 0002 0400     		movs	r4, r0
+ 375:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 964              		.loc 1 375 3 is_stmt 1 view .LVU260
+ 375:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 965              		.loc 1 375 23 is_stmt 0 view .LVU261
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 34
+
+
+ 966 0004 0723     		movs	r3, #7
+ 967 0006 0360     		str	r3, [r0]
+ 378:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 968              		.loc 1 378 3 is_stmt 1 view .LVU262
+ 969 0008 0200     		movs	r2, r0
+ 970 000a 0C32     		adds	r2, r2, #12
+ 971 000c 0100     		movs	r1, r0
+ 972 000e 0831     		adds	r1, r1, #8
+ 973 0010 4068     		ldr	r0, [r0, #4]
+ 974              	.LVL75:
+ 378:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 975              		.loc 1 378 3 is_stmt 0 view .LVU263
+ 976 0012 FFF7FEFF 		bl	FLASH_OB_GetWRP
+ 977              	.LVL76:
+ 381:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 978              		.loc 1 381 3 is_stmt 1 view .LVU264
+ 381:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 979              		.loc 1 381 23 is_stmt 0 view .LVU265
+ 980 0016 FFF7FEFF 		bl	FLASH_OB_GetRDP
+ 981              	.LVL77:
+ 381:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 982              		.loc 1 381 21 view .LVU266
+ 983 001a 2061     		str	r0, [r4, #16]
+ 384:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->USERType = OB_USER_ALL;
+ 984              		.loc 1 384 3 is_stmt 1 view .LVU267
+ 384:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->USERType = OB_USER_ALL;
+ 985              		.loc 1 384 25 is_stmt 0 view .LVU268
+ 986 001c FFF7FEFF 		bl	FLASH_OB_GetUser
+ 987              	.LVL78:
+ 384:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->USERType = OB_USER_ALL;
+ 988              		.loc 1 384 23 view .LVU269
+ 989 0020 A061     		str	r0, [r4, #24]
+ 385:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 990              		.loc 1 385 3 is_stmt 1 view .LVU270
+ 385:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 991              		.loc 1 385 21 is_stmt 0 view .LVU271
+ 992 0022 0D4B     		ldr	r3, .L69
+ 993 0024 6361     		str	r3, [r4, #20]
+ 388:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH_OB_GetPCROP1B(&(pOBInit->PCROP1BStartAddr), &(pOBInit->PCROP1BEndAddr));
+ 994              		.loc 1 388 3 is_stmt 1 view .LVU272
+ 995 0026 2200     		movs	r2, r4
+ 996 0028 2432     		adds	r2, r2, #36
+ 997 002a 2100     		movs	r1, r4
+ 998 002c 2031     		adds	r1, r1, #32
+ 999 002e 2000     		movs	r0, r4
+ 1000 0030 1C30     		adds	r0, r0, #28
+ 1001 0032 FFF7FEFF 		bl	FLASH_OB_GetPCROP1A
+ 1002              	.LVL79:
+ 389:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   pOBInit->PCROPConfig |= (OB_PCROP_ZONE_A | OB_PCROP_ZONE_B);
+ 1003              		.loc 1 389 3 view .LVU273
+ 1004 0036 2100     		movs	r1, r4
+ 1005 0038 2C31     		adds	r1, r1, #44
+ 1006 003a 2000     		movs	r0, r4
+ 1007 003c 2830     		adds	r0, r0, #40
+ 1008 003e FFF7FEFF 		bl	FLASH_OB_GetPCROP1B
+ 1009              	.LVL80:
+ 390:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 35
+
+
+ 1010              		.loc 1 390 3 view .LVU274
+ 390:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1011              		.loc 1 390 24 is_stmt 0 view .LVU275
+ 1012 0042 0323     		movs	r3, #3
+ 1013 0044 E269     		ldr	r2, [r4, #28]
+ 1014 0046 1343     		orrs	r3, r2
+ 1015 0048 E361     		str	r3, [r4, #28]
+ 393:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1016              		.loc 1 393 3 is_stmt 1 view .LVU276
+ 1017 004a 2100     		movs	r1, r4
+ 1018 004c 3431     		adds	r1, r1, #52
+ 1019 004e 2000     		movs	r0, r4
+ 1020 0050 3030     		adds	r0, r0, #48
+ 1021 0052 FFF7FEFF 		bl	FLASH_OB_GetSecMem
+ 1022              	.LVL81:
+ 394:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1023              		.loc 1 394 1 is_stmt 0 view .LVU277
+ 1024              		@ sp needed
+ 1025              	.LVL82:
+ 394:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1026              		.loc 1 394 1 view .LVU278
+ 1027 0056 10BD     		pop	{r4, pc}
+ 1028              	.L70:
+ 1029              		.align	2
+ 1030              	.L69:
+ 1031 0058 00FFEF3F 		.word	1072692992
+ 1032              		.cfi_endproc
+ 1033              	.LFE217:
+ 1035              		.section	.text.HAL_FLASHEx_EnableDebugger,"ax",%progbits
+ 1036              		.align	1
+ 1037              		.global	HAL_FLASHEx_EnableDebugger
+ 1038              		.syntax unified
+ 1039              		.code	16
+ 1040              		.thumb_func
+ 1042              	HAL_FLASHEx_EnableDebugger:
+ 1043              	.LFB218:
+ 402:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->ACR |= FLASH_ACR_DBG_SWEN;
+ 1044              		.loc 1 402 1 is_stmt 1 view -0
+ 1045              		.cfi_startproc
+ 1046              		@ args = 0, pretend = 0, frame = 0
+ 1047              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1048              		@ link register save eliminated.
+ 403:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1049              		.loc 1 403 3 view .LVU280
+ 403:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1050              		.loc 1 403 14 is_stmt 0 view .LVU281
+ 1051 0000 034A     		ldr	r2, .L72
+ 1052 0002 1168     		ldr	r1, [r2]
+ 1053 0004 8023     		movs	r3, #128
+ 1054 0006 DB02     		lsls	r3, r3, #11
+ 1055 0008 0B43     		orrs	r3, r1
+ 1056 000a 1360     		str	r3, [r2]
+ 404:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1057              		.loc 1 404 1 view .LVU282
+ 1058              		@ sp needed
+ 1059 000c 7047     		bx	lr
+ 1060              	.L73:
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 36
+
+
+ 1061 000e C046     		.align	2
+ 1062              	.L72:
+ 1063 0010 00200240 		.word	1073881088
+ 1064              		.cfi_endproc
+ 1065              	.LFE218:
+ 1067              		.section	.text.HAL_FLASHEx_DisableDebugger,"ax",%progbits
+ 1068              		.align	1
+ 1069              		.global	HAL_FLASHEx_DisableDebugger
+ 1070              		.syntax unified
+ 1071              		.code	16
+ 1072              		.thumb_func
+ 1074              	HAL_FLASHEx_DisableDebugger:
+ 1075              	.LFB219:
+ 413:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->ACR &= ~FLASH_ACR_DBG_SWEN;
+ 1076              		.loc 1 413 1 is_stmt 1 view -0
+ 1077              		.cfi_startproc
+ 1078              		@ args = 0, pretend = 0, frame = 0
+ 1079              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1080              		@ link register save eliminated.
+ 414:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1081              		.loc 1 414 3 view .LVU284
+ 414:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1082              		.loc 1 414 14 is_stmt 0 view .LVU285
+ 1083 0000 024A     		ldr	r2, .L75
+ 1084 0002 1368     		ldr	r3, [r2]
+ 1085 0004 0249     		ldr	r1, .L75+4
+ 1086 0006 0B40     		ands	r3, r1
+ 1087 0008 1360     		str	r3, [r2]
+ 415:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1088              		.loc 1 415 1 view .LVU286
+ 1089              		@ sp needed
+ 1090 000a 7047     		bx	lr
+ 1091              	.L76:
+ 1092              		.align	2
+ 1093              	.L75:
+ 1094 000c 00200240 		.word	1073881088
+ 1095 0010 FFFFFBFF 		.word	-262145
+ 1096              		.cfi_endproc
+ 1097              	.LFE219:
+ 1099              		.section	.text.HAL_FLASHEx_FlashEmptyCheck,"ax",%progbits
+ 1100              		.align	1
+ 1101              		.global	HAL_FLASHEx_FlashEmptyCheck
+ 1102              		.syntax unified
+ 1103              		.code	16
+ 1104              		.thumb_func
+ 1106              	HAL_FLASHEx_FlashEmptyCheck:
+ 1107              	.LFB220:
+ 424:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   return ((FLASH->ACR & FLASH_ACR_PROGEMPTY));
+ 1108              		.loc 1 424 1 is_stmt 1 view -0
+ 1109              		.cfi_startproc
+ 1110              		@ args = 0, pretend = 0, frame = 0
+ 1111              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1112              		@ link register save eliminated.
+ 425:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1113              		.loc 1 425 3 view .LVU288
+ 425:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1114              		.loc 1 425 17 is_stmt 0 view .LVU289
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 37
+
+
+ 1115 0000 024B     		ldr	r3, .L78
+ 1116 0002 1868     		ldr	r0, [r3]
+ 425:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1117              		.loc 1 425 23 view .LVU290
+ 1118 0004 8023     		movs	r3, #128
+ 1119 0006 5B02     		lsls	r3, r3, #9
+ 1120 0008 1840     		ands	r0, r3
+ 426:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1121              		.loc 1 426 1 view .LVU291
+ 1122              		@ sp needed
+ 1123 000a 7047     		bx	lr
+ 1124              	.L79:
+ 1125              		.align	2
+ 1126              	.L78:
+ 1127 000c 00200240 		.word	1073881088
+ 1128              		.cfi_endproc
+ 1129              	.LFE220:
+ 1131              		.section	.text.HAL_FLASHEx_ForceFlashEmpty,"ax",%progbits
+ 1132              		.align	1
+ 1133              		.global	HAL_FLASHEx_ForceFlashEmpty
+ 1134              		.syntax unified
+ 1135              		.code	16
+ 1136              		.thumb_func
+ 1138              	HAL_FLASHEx_ForceFlashEmpty:
+ 1139              	.LVL83:
+ 1140              	.LFB221:
+ 438:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t acr;
+ 1141              		.loc 1 438 1 is_stmt 1 view -0
+ 1142              		.cfi_startproc
+ 1143              		@ args = 0, pretend = 0, frame = 0
+ 1144              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1145              		@ link register save eliminated.
+ 439:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_EMPTY_CHECK(FlashEmpty));
+ 1146              		.loc 1 439 3 view .LVU293
+ 440:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1147              		.loc 1 440 3 view .LVU294
+ 442:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->ACR = (acr | FlashEmpty);
+ 1148              		.loc 1 442 3 view .LVU295
+ 442:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->ACR = (acr | FlashEmpty);
+ 1149              		.loc 1 442 15 is_stmt 0 view .LVU296
+ 1150 0000 034A     		ldr	r2, .L81
+ 1151 0002 1368     		ldr	r3, [r2]
+ 442:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->ACR = (acr | FlashEmpty);
+ 1152              		.loc 1 442 7 view .LVU297
+ 1153 0004 0349     		ldr	r1, .L81+4
+ 1154 0006 0B40     		ands	r3, r1
+ 1155              	.LVL84:
+ 443:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1156              		.loc 1 443 3 is_stmt 1 view .LVU298
+ 443:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1157              		.loc 1 443 21 is_stmt 0 view .LVU299
+ 1158 0008 0343     		orrs	r3, r0
+ 1159              	.LVL85:
+ 443:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1160              		.loc 1 443 14 view .LVU300
+ 1161 000a 1360     		str	r3, [r2]
+ 444:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 38
+
+
+ 1162              		.loc 1 444 1 view .LVU301
+ 1163              		@ sp needed
+ 1164 000c 7047     		bx	lr
+ 1165              	.L82:
+ 1166 000e C046     		.align	2
+ 1167              	.L81:
+ 1168 0010 00200240 		.word	1073881088
+ 1169 0014 FFFFFEFF 		.word	-65537
+ 1170              		.cfi_endproc
+ 1171              	.LFE221:
+ 1173              		.section	.text.HAL_FLASHEx_EnableSecMemProtection,"ax",%progbits
+ 1174              		.align	1
+ 1175              		.global	HAL_FLASHEx_EnableSecMemProtection
+ 1176              		.syntax unified
+ 1177              		.code	16
+ 1178              		.thumb_func
+ 1180              	HAL_FLASHEx_EnableSecMemProtection:
+ 1181              	.LVL86:
+ 1182              	.LFB222:
+ 457:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   assert_param(IS_FLASH_BANK(Bank));
+ 1183              		.loc 1 457 1 is_stmt 1 view -0
+ 1184              		.cfi_startproc
+ 1185              		@ args = 0, pretend = 0, frame = 0
+ 1186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1187              		@ link register save eliminated.
+ 458:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   FLASH->CR |= FLASH_CR_SEC_PROT;
+ 1188              		.loc 1 458 3 view .LVU303
+ 459:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1189              		.loc 1 459 3 view .LVU304
+ 459:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1190              		.loc 1 459 13 is_stmt 0 view .LVU305
+ 1191 0000 034A     		ldr	r2, .L84
+ 1192 0002 5169     		ldr	r1, [r2, #20]
+ 1193 0004 8023     		movs	r3, #128
+ 1194 0006 5B05     		lsls	r3, r3, #21
+ 1195 0008 0B43     		orrs	r3, r1
+ 1196 000a 5361     		str	r3, [r2, #20]
+ 460:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1197              		.loc 1 460 1 view .LVU306
+ 1198              		@ sp needed
+ 1199 000c 7047     		bx	lr
+ 1200              	.L85:
+ 1201 000e C046     		.align	2
+ 1202              	.L84:
+ 1203 0010 00200240 		.word	1073881088
+ 1204              		.cfi_endproc
+ 1205              	.LFE222:
+ 1207              		.section	.text.FLASH_PageErase,"ax",%progbits
+ 1208              		.align	1
+ 1209              		.global	FLASH_PageErase
+ 1210              		.syntax unified
+ 1211              		.code	16
+ 1212              		.thumb_func
+ 1214              	FLASH_PageErase:
+ 1215              	.LVL87:
+ 1216              	.LFB224:
+ 492:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t tmp;
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 39
+
+
+ 1217              		.loc 1 492 1 is_stmt 1 view -0
+ 1218              		.cfi_startproc
+ 1219              		@ args = 0, pretend = 0, frame = 0
+ 1220              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1221              		@ link register save eliminated.
+ 493:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1222              		.loc 1 493 3 view .LVU308
+ 496:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1223              		.loc 1 496 3 view .LVU309
+ 499:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1224              		.loc 1 499 3 view .LVU310
+ 499:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1225              		.loc 1 499 15 is_stmt 0 view .LVU311
+ 1226 0000 044A     		ldr	r2, .L87
+ 1227 0002 5369     		ldr	r3, [r2, #20]
+ 499:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1228              		.loc 1 499 7 view .LVU312
+ 1229 0004 7821     		movs	r1, #120
+ 1230 0006 8B43     		bics	r3, r1
+ 1231              	.LVL88:
+ 502:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1232              		.loc 1 502 3 is_stmt 1 view .LVU313
+ 502:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1233              		.loc 1 502 45 is_stmt 0 view .LVU314
+ 1234 0008 C000     		lsls	r0, r0, #3
+ 1235              	.LVL89:
+ 502:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1236              		.loc 1 502 20 view .LVU315
+ 1237 000a 1843     		orrs	r0, r3
+ 1238 000c 024B     		ldr	r3, .L87+4
+ 1239              	.LVL90:
+ 502:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1240              		.loc 1 502 20 view .LVU316
+ 1241 000e 1843     		orrs	r0, r3
+ 502:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ 1242              		.loc 1 502 13 view .LVU317
+ 1243 0010 5061     		str	r0, [r2, #20]
+ 503:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1244              		.loc 1 503 1 view .LVU318
+ 1245              		@ sp needed
+ 1246 0012 7047     		bx	lr
+ 1247              	.L88:
+ 1248              		.align	2
+ 1249              	.L87:
+ 1250 0014 00200240 		.word	1073881088
+ 1251 0018 02000100 		.word	65538
+ 1252              		.cfi_endproc
+ 1253              	.LFE224:
+ 1255              		.section	.text.HAL_FLASHEx_Erase,"ax",%progbits
+ 1256              		.align	1
+ 1257              		.global	HAL_FLASHEx_Erase
+ 1258              		.syntax unified
+ 1259              		.code	16
+ 1260              		.thumb_func
+ 1262              	HAL_FLASHEx_Erase:
+ 1263              	.LVL91:
+ 1264              	.LFB214:
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 40
+
+
+ 140:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
+ 1265              		.loc 1 140 1 is_stmt 1 view -0
+ 1266              		.cfi_startproc
+ 1267              		@ args = 0, pretend = 0, frame = 0
+ 1268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 140:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
+ 1269              		.loc 1 140 1 is_stmt 0 view .LVU320
+ 1270 0000 70B5     		push	{r4, r5, r6, lr}
+ 1271              	.LCFI9:
+ 1272              		.cfi_def_cfa_offset 16
+ 1273              		.cfi_offset 4, -16
+ 1274              		.cfi_offset 5, -12
+ 1275              		.cfi_offset 6, -8
+ 1276              		.cfi_offset 14, -4
+ 1277 0002 0500     		movs	r5, r0
+ 1278 0004 0E00     		movs	r6, r1
+ 141:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   uint32_t index;
+ 1279              		.loc 1 141 3 is_stmt 1 view .LVU321
+ 142:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1280              		.loc 1 142 3 view .LVU322
+ 145:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1281              		.loc 1 145 3 view .LVU323
+ 148:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1282              		.loc 1 148 3 view .LVU324
+ 148:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1283              		.loc 1 148 3 view .LVU325
+ 1284 0006 1D4B     		ldr	r3, .L100
+ 1285 0008 1B78     		ldrb	r3, [r3]
+ 1286 000a 012B     		cmp	r3, #1
+ 1287 000c 33D0     		beq	.L97
+ 148:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1288              		.loc 1 148 3 discriminator 2 view .LVU326
+ 1289 000e 1B4B     		ldr	r3, .L100
+ 1290 0010 0122     		movs	r2, #1
+ 1291 0012 1A70     		strb	r2, [r3]
+ 148:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1292              		.loc 1 148 3 discriminator 2 view .LVU327
+ 151:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1293              		.loc 1 151 3 discriminator 2 view .LVU328
+ 151:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1294              		.loc 1 151 20 is_stmt 0 discriminator 2 view .LVU329
+ 1295 0014 0022     		movs	r2, #0
+ 1296 0016 5A60     		str	r2, [r3, #4]
+ 154:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1297              		.loc 1 154 3 is_stmt 1 discriminator 2 view .LVU330
+ 154:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1298              		.loc 1 154 12 is_stmt 0 discriminator 2 view .LVU331
+ 1299 0018 FA20     		movs	r0, #250
+ 1300              	.LVL92:
+ 154:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1301              		.loc 1 154 12 discriminator 2 view .LVU332
+ 1302 001a 8000     		lsls	r0, r0, #2
+ 1303 001c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1304              	.LVL93:
+ 156:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 1305              		.loc 1 156 3 is_stmt 1 discriminator 2 view .LVU333
+ 156:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 41
+
+
+ 1306              		.loc 1 156 6 is_stmt 0 discriminator 2 view .LVU334
+ 1307 0020 0028     		cmp	r0, #0
+ 1308 0022 24D1     		bne	.L91
+ 158:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 1309              		.loc 1 158 5 is_stmt 1 view .LVU335
+ 158:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 1310              		.loc 1 158 8 is_stmt 0 view .LVU336
+ 1311 0024 2B68     		ldr	r3, [r5]
+ 1312 0026 042B     		cmp	r3, #4
+ 1313 0028 14D0     		beq	.L98
+ 169:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1314              		.loc 1 169 7 is_stmt 1 view .LVU337
+ 169:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1315              		.loc 1 169 18 is_stmt 0 view .LVU338
+ 1316 002a 0123     		movs	r3, #1
+ 1317 002c 5B42     		rsbs	r3, r3, #0
+ 1318 002e 3360     		str	r3, [r6]
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 1319              		.loc 1 171 7 is_stmt 1 view .LVU339
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 1320              		.loc 1 171 18 is_stmt 0 view .LVU340
+ 1321 0030 6C68     		ldr	r4, [r5, #4]
+ 1322              	.LVL94:
+ 1323              	.L93:
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 1324              		.loc 1 171 38 is_stmt 1 discriminator 1 view .LVU341
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 1325              		.loc 1 171 64 is_stmt 0 discriminator 1 view .LVU342
+ 1326 0032 6B68     		ldr	r3, [r5, #4]
+ 1327 0034 AA68     		ldr	r2, [r5, #8]
+ 1328 0036 9446     		mov	ip, r2
+ 1329 0038 6344     		add	r3, r3, ip
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 1330              		.loc 1 171 7 discriminator 1 view .LVU343
+ 1331 003a A342     		cmp	r3, r4
+ 1332 003c 12D9     		bls	.L95
+ 174:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1333              		.loc 1 174 9 is_stmt 1 view .LVU344
+ 1334 003e 2000     		movs	r0, r4
+ 1335              	.LVL95:
+ 174:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1336              		.loc 1 174 9 is_stmt 0 view .LVU345
+ 1337 0040 FFF7FEFF 		bl	FLASH_PageErase
+ 1338              	.LVL96:
+ 177:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1339              		.loc 1 177 9 is_stmt 1 view .LVU346
+ 177:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1340              		.loc 1 177 18 is_stmt 0 view .LVU347
+ 1341 0044 FA20     		movs	r0, #250
+ 1342 0046 8000     		lsls	r0, r0, #2
+ 1343 0048 FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1344              	.LVL97:
+ 179:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         {
+ 1345              		.loc 1 179 9 is_stmt 1 view .LVU348
+ 179:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         {
+ 1346              		.loc 1 179 12 is_stmt 0 view .LVU349
+ 1347 004c 0028     		cmp	r0, #0
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 42
+
+
+ 1348 004e 08D1     		bne	.L99
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 1349              		.loc 1 171 88 is_stmt 1 discriminator 2 view .LVU350
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 1350              		.loc 1 171 93 is_stmt 0 discriminator 2 view .LVU351
+ 1351 0050 0134     		adds	r4, r4, #1
+ 1352              	.LVL98:
+ 171:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       {
+ 1353              		.loc 1 171 93 discriminator 2 view .LVU352
+ 1354 0052 EEE7     		b	.L93
+ 1355              	.LVL99:
+ 1356              	.L98:
+ 161:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1357              		.loc 1 161 7 is_stmt 1 view .LVU353
+ 1358 0054 FFF7FEFF 		bl	FLASH_MassErase
+ 1359              	.LVL100:
+ 164:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 1360              		.loc 1 164 7 view .LVU354
+ 164:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 1361              		.loc 1 164 16 is_stmt 0 view .LVU355
+ 1362 0058 FA20     		movs	r0, #250
+ 1363 005a 8000     		lsls	r0, r0, #2
+ 1364 005c FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1365              	.LVL101:
+ 164:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 1366              		.loc 1 164 16 view .LVU356
+ 1367 0060 05E0     		b	.L91
+ 1368              	.LVL102:
+ 1369              	.L99:
+ 182:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****           break;
+ 1370              		.loc 1 182 11 is_stmt 1 view .LVU357
+ 182:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****           break;
+ 1371              		.loc 1 182 22 is_stmt 0 view .LVU358
+ 1372 0062 3460     		str	r4, [r6]
+ 183:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****         }
+ 1373              		.loc 1 183 11 is_stmt 1 view .LVU359
+ 1374              	.LVL103:
+ 1375              	.L95:
+ 188:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 1376              		.loc 1 188 7 view .LVU360
+ 1377 0064 064A     		ldr	r2, .L100+4
+ 1378 0066 5369     		ldr	r3, [r2, #20]
+ 1379 0068 0221     		movs	r1, #2
+ 1380 006a 8B43     		bics	r3, r1
+ 1381 006c 5361     		str	r3, [r2, #20]
+ 1382              	.LVL104:
+ 1383              	.L91:
+ 193:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1384              		.loc 1 193 3 view .LVU361
+ 193:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1385              		.loc 1 193 3 view .LVU362
+ 1386 006e 034B     		ldr	r3, .L100
+ 1387 0070 0022     		movs	r2, #0
+ 1388 0072 1A70     		strb	r2, [r3]
+ 193:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1389              		.loc 1 193 3 view .LVU363
+ 196:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** }
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 43
+
+
+ 1390              		.loc 1 196 3 view .LVU364
+ 1391              	.LVL105:
+ 1392              	.L90:
+ 197:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1393              		.loc 1 197 1 is_stmt 0 view .LVU365
+ 1394              		@ sp needed
+ 1395              	.LVL106:
+ 1396              	.LVL107:
+ 197:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1397              		.loc 1 197 1 view .LVU366
+ 1398 0074 70BD     		pop	{r4, r5, r6, pc}
+ 1399              	.LVL108:
+ 1400              	.L97:
+ 148:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1401              		.loc 1 148 3 view .LVU367
+ 1402 0076 0220     		movs	r0, #2
+ 1403              	.LVL109:
+ 148:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1404              		.loc 1 148 3 view .LVU368
+ 1405 0078 FCE7     		b	.L90
+ 1406              	.L101:
+ 1407 007a C046     		.align	2
+ 1408              	.L100:
+ 1409 007c 00000000 		.word	pFlash
+ 1410 0080 00200240 		.word	1073881088
+ 1411              		.cfi_endproc
+ 1412              	.LFE214:
+ 1414              		.section	.text.HAL_FLASHEx_Erase_IT,"ax",%progbits
+ 1415              		.align	1
+ 1416              		.global	HAL_FLASHEx_Erase_IT
+ 1417              		.syntax unified
+ 1418              		.code	16
+ 1419              		.thumb_func
+ 1421              	HAL_FLASHEx_Erase_IT:
+ 1422              	.LVL110:
+ 1423              	.LFB215:
+ 207:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
+ 1424              		.loc 1 207 1 is_stmt 1 view -0
+ 1425              		.cfi_startproc
+ 1426              		@ args = 0, pretend = 0, frame = 0
+ 1427              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   HAL_StatusTypeDef status;
+ 1428              		.loc 1 207 1 is_stmt 0 view .LVU370
+ 1429 0000 70B5     		push	{r4, r5, r6, lr}
+ 1430              	.LCFI10:
+ 1431              		.cfi_def_cfa_offset 16
+ 1432              		.cfi_offset 4, -16
+ 1433              		.cfi_offset 5, -12
+ 1434              		.cfi_offset 6, -8
+ 1435              		.cfi_offset 14, -4
+ 1436 0002 0400     		movs	r4, r0
+ 208:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1437              		.loc 1 208 3 is_stmt 1 view .LVU371
+ 211:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1438              		.loc 1 211 3 view .LVU372
+ 214:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1439              		.loc 1 214 3 view .LVU373
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 44
+
+
+ 214:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1440              		.loc 1 214 3 view .LVU374
+ 1441 0004 174B     		ldr	r3, .L108
+ 1442 0006 1B78     		ldrb	r3, [r3]
+ 1443 0008 012B     		cmp	r3, #1
+ 1444 000a 28D0     		beq	.L106
+ 214:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1445              		.loc 1 214 3 discriminator 2 view .LVU375
+ 1446 000c 154B     		ldr	r3, .L108
+ 1447 000e 0122     		movs	r2, #1
+ 1448 0010 1A70     		strb	r2, [r3]
+ 214:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1449              		.loc 1 214 3 discriminator 2 view .LVU376
+ 217:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1450              		.loc 1 217 3 discriminator 2 view .LVU377
+ 217:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1451              		.loc 1 217 20 is_stmt 0 discriminator 2 view .LVU378
+ 1452 0012 0022     		movs	r2, #0
+ 1453 0014 5A60     		str	r2, [r3, #4]
+ 220:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1454              		.loc 1 220 3 is_stmt 1 discriminator 2 view .LVU379
+ 220:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1455              		.loc 1 220 27 is_stmt 0 discriminator 2 view .LVU380
+ 1456 0016 0268     		ldr	r2, [r0]
+ 1457 0018 9A60     		str	r2, [r3, #8]
+ 223:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1458              		.loc 1 223 3 is_stmt 1 discriminator 2 view .LVU381
+ 223:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1459              		.loc 1 223 12 is_stmt 0 discriminator 2 view .LVU382
+ 1460 001a FA20     		movs	r0, #250
+ 1461              	.LVL111:
+ 223:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1462              		.loc 1 223 12 discriminator 2 view .LVU383
+ 1463 001c 8000     		lsls	r0, r0, #2
+ 1464 001e FFF7FEFF 		bl	FLASH_WaitForLastOperation
+ 1465              	.LVL112:
+ 1466 0022 051E     		subs	r5, r0, #0
+ 1467              	.LVL113:
+ 225:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 1468              		.loc 1 225 3 is_stmt 1 discriminator 2 view .LVU384
+ 225:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 1469              		.loc 1 225 6 is_stmt 0 discriminator 2 view .LVU385
+ 1470 0024 04D0     		beq	.L104
+ 228:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 1471              		.loc 1 228 5 is_stmt 1 view .LVU386
+ 228:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 1472              		.loc 1 228 5 view .LVU387
+ 1473 0026 0F4B     		ldr	r3, .L108
+ 1474 0028 0022     		movs	r2, #0
+ 1475 002a 1A70     		strb	r2, [r3]
+ 228:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 1476              		.loc 1 228 5 view .LVU388
+ 1477              	.LVL114:
+ 1478              	.L103:
+ 256:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1479              		.loc 1 256 1 is_stmt 0 view .LVU389
+ 1480 002c 2800     		movs	r0, r5
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 45
+
+
+ 1481              		@ sp needed
+ 1482              	.LVL115:
+ 256:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1483              		.loc 1 256 1 view .LVU390
+ 1484 002e 70BD     		pop	{r4, r5, r6, pc}
+ 1485              	.LVL116:
+ 1486              	.L104:
+ 233:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1487              		.loc 1 233 5 is_stmt 1 view .LVU391
+ 1488 0030 0D4A     		ldr	r2, .L108+4
+ 1489 0032 5169     		ldr	r1, [r2, #20]
+ 1490 0034 C023     		movs	r3, #192
+ 1491 0036 9B04     		lsls	r3, r3, #18
+ 1492 0038 0B43     		orrs	r3, r1
+ 1493 003a 5361     		str	r3, [r2, #20]
+ 235:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 1494              		.loc 1 235 5 view .LVU392
+ 235:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     {
+ 1495              		.loc 1 235 8 is_stmt 0 view .LVU393
+ 1496 003c 2368     		ldr	r3, [r4]
+ 1497 003e 042B     		cmp	r3, #4
+ 1498 0040 07D0     		beq	.L107
+ 246:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       pFlash.Page = pEraseInit->Page;
+ 1499              		.loc 1 246 7 is_stmt 1 view .LVU394
+ 246:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****       pFlash.Page = pEraseInit->Page;
+ 1500              		.loc 1 246 29 is_stmt 0 view .LVU395
+ 1501 0042 084B     		ldr	r3, .L108
+ 1502 0044 A268     		ldr	r2, [r4, #8]
+ 1503 0046 5A61     		str	r2, [r3, #20]
+ 247:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1504              		.loc 1 247 7 is_stmt 1 view .LVU396
+ 247:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1505              		.loc 1 247 31 is_stmt 0 view .LVU397
+ 1506 0048 6068     		ldr	r0, [r4, #4]
+ 1507              	.LVL117:
+ 247:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1508              		.loc 1 247 19 view .LVU398
+ 1509 004a 1861     		str	r0, [r3, #16]
+ 250:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 1510              		.loc 1 250 7 is_stmt 1 view .LVU399
+ 1511 004c FFF7FEFF 		bl	FLASH_PageErase
+ 1512              	.LVL118:
+ 1513 0050 ECE7     		b	.L103
+ 1514              	.LVL119:
+ 1515              	.L107:
+ 238:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1516              		.loc 1 238 7 view .LVU400
+ 238:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1517              		.loc 1 238 19 is_stmt 0 view .LVU401
+ 1518 0052 044B     		ldr	r3, .L108
+ 1519 0054 0022     		movs	r2, #0
+ 1520 0056 1A61     		str	r2, [r3, #16]
+ 241:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ 1521              		.loc 1 241 7 is_stmt 1 view .LVU402
+ 1522 0058 FFF7FEFF 		bl	FLASH_MassErase
+ 1523              	.LVL120:
+ 241:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     }
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 46
+
+
+ 1524              		.loc 1 241 7 is_stmt 0 view .LVU403
+ 1525 005c E6E7     		b	.L103
+ 1526              	.LVL121:
+ 1527              	.L106:
+ 214:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1528              		.loc 1 214 3 view .LVU404
+ 1529 005e 0225     		movs	r5, #2
+ 1530 0060 E4E7     		b	.L103
+ 1531              	.L109:
+ 1532 0062 C046     		.align	2
+ 1533              	.L108:
+ 1534 0064 00000000 		.word	pFlash
+ 1535 0068 00200240 		.word	1073881088
+ 1536              		.cfi_endproc
+ 1537              	.LFE215:
+ 1539              		.section	.text.FLASH_FlushCaches,"ax",%progbits
+ 1540              		.align	1
+ 1541              		.global	FLASH_FlushCaches
+ 1542              		.syntax unified
+ 1543              		.code	16
+ 1544              		.thumb_func
+ 1546              	FLASH_FlushCaches:
+ 1547              	.LFB225:
+ 510:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   /* Flush instruction cache  */
+ 1548              		.loc 1 510 1 is_stmt 1 view -0
+ 1549              		.cfi_startproc
+ 1550              		@ args = 0, pretend = 0, frame = 0
+ 1551              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1552              		@ link register save eliminated.
+ 512:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 1553              		.loc 1 512 3 view .LVU406
+ 512:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 1554              		.loc 1 512 7 is_stmt 0 view .LVU407
+ 1555 0000 0B4B     		ldr	r3, .L112
+ 1556 0002 1B68     		ldr	r3, [r3]
+ 512:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   {
+ 1557              		.loc 1 512 6 view .LVU408
+ 1558 0004 9B05     		lsls	r3, r3, #22
+ 1559 0006 12D5     		bpl	.L110
+ 515:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Reset instruction cache */
+ 1560              		.loc 1 515 5 is_stmt 1 view .LVU409
+ 1561 0008 094B     		ldr	r3, .L112
+ 1562 000a 1A68     		ldr	r2, [r3]
+ 1563 000c 0949     		ldr	r1, .L112+4
+ 1564 000e 0A40     		ands	r2, r1
+ 1565 0010 1A60     		str	r2, [r3]
+ 517:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Enable instruction cache */
+ 1566              		.loc 1 517 5 view .LVU410
+ 517:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Enable instruction cache */
+ 1567              		.loc 1 517 5 view .LVU411
+ 1568 0012 1968     		ldr	r1, [r3]
+ 1569 0014 8022     		movs	r2, #128
+ 1570 0016 1201     		lsls	r2, r2, #4
+ 1571 0018 0A43     		orrs	r2, r1
+ 1572 001a 1A60     		str	r2, [r3]
+ 517:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Enable instruction cache */
+ 1573              		.loc 1 517 5 view .LVU412
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 47
+
+
+ 1574 001c 1A68     		ldr	r2, [r3]
+ 1575 001e 0649     		ldr	r1, .L112+8
+ 1576 0020 0A40     		ands	r2, r1
+ 1577 0022 1A60     		str	r2, [r3]
+ 517:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****     /* Enable instruction cache */
+ 1578              		.loc 1 517 5 view .LVU413
+ 519:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c ****   }
+ 1579              		.loc 1 519 5 view .LVU414
+ 1580 0024 1968     		ldr	r1, [r3]
+ 1581 0026 8022     		movs	r2, #128
+ 1582 0028 9200     		lsls	r2, r2, #2
+ 1583 002a 0A43     		orrs	r2, r1
+ 1584 002c 1A60     		str	r2, [r3]
+ 1585              	.L110:
+ 521:Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_flash_ex.c **** 
+ 1586              		.loc 1 521 1 is_stmt 0 view .LVU415
+ 1587              		@ sp needed
+ 1588 002e 7047     		bx	lr
+ 1589              	.L113:
+ 1590              		.align	2
+ 1591              	.L112:
+ 1592 0030 00200240 		.word	1073881088
+ 1593 0034 FFFDFFFF 		.word	-513
+ 1594 0038 FFF7FFFF 		.word	-2049
+ 1595              		.cfi_endproc
+ 1596              	.LFE225:
+ 1598              		.text
+ 1599              	.Letext0:
+ 1600              		.file 2 "d:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1601              		.file 3 "d:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 1602              		.file 4 "Drivers/CMSIS/Device/ST/STM32C0xx/Include/stm32c031xx.h"
+ 1603              		.file 5 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_def.h"
+ 1604              		.file 6 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_flash.h"
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 48
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 stm32c0xx_hal_flash_ex.c
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:18     .text.FLASH_MassErase:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:23     .text.FLASH_MassErase:00000000 FLASH_MassErase
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:44     .text.FLASH_MassErase:0000000c $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:50     .text.FLASH_OB_WRPConfig:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:55     .text.FLASH_OB_WRPConfig:00000000 FLASH_OB_WRPConfig
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:99     .text.FLASH_OB_WRPConfig:00000018 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:104    .text.FLASH_OB_OptrConfig:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:109    .text.FLASH_OB_OptrConfig:00000000 FLASH_OB_OptrConfig
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:154    .text.FLASH_OB_OptrConfig:00000014 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:159    .text.FLASH_OB_PCROP1AConfig:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:164    .text.FLASH_OB_PCROP1AConfig:00000000 FLASH_OB_PCROP1AConfig
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:249    .text.FLASH_OB_PCROP1AConfig:00000034 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:254    .text.FLASH_OB_PCROP1BConfig:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:259    .text.FLASH_OB_PCROP1BConfig:00000000 FLASH_OB_PCROP1BConfig
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:301    .text.FLASH_OB_PCROP1BConfig:00000018 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:306    .text.FLASH_OB_SecMemConfig:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:311    .text.FLASH_OB_SecMemConfig:00000000 FLASH_OB_SecMemConfig
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:351    .text.FLASH_OB_SecMemConfig:00000014 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:357    .text.FLASH_OB_GetWRP:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:362    .text.FLASH_OB_GetWRP:00000000 FLASH_OB_GetWRP
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:428    .text.FLASH_OB_GetWRP:00000030 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:433    .text.FLASH_OB_GetRDP:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:438    .text.FLASH_OB_GetRDP:00000000 FLASH_OB_GetRDP
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:470    .text.FLASH_OB_GetRDP:00000014 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:475    .text.FLASH_OB_GetUser:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:480    .text.FLASH_OB_GetUser:00000000 FLASH_OB_GetUser
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:502    .text.FLASH_OB_GetUser:0000000c $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:508    .text.FLASH_OB_GetPCROP1A:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:513    .text.FLASH_OB_GetPCROP1A:00000000 FLASH_OB_GetPCROP1A
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:588    .text.FLASH_OB_GetPCROP1A:0000003c $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:594    .text.FLASH_OB_GetPCROP1B:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:599    .text.FLASH_OB_GetPCROP1B:00000000 FLASH_OB_GetPCROP1B
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:660    .text.FLASH_OB_GetPCROP1B:0000002c $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:666    .text.FLASH_OB_GetSecMem:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:671    .text.FLASH_OB_GetSecMem:00000000 FLASH_OB_GetSecMem
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:711    .text.FLASH_OB_GetSecMem:00000018 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:716    .text.HAL_FLASHEx_OBProgram:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:722    .text.HAL_FLASHEx_OBProgram:00000000 HAL_FLASHEx_OBProgram
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:936    .text.HAL_FLASHEx_OBProgram:000000d4 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:944    .text.HAL_FLASHEx_OBGetConfig:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:950    .text.HAL_FLASHEx_OBGetConfig:00000000 HAL_FLASHEx_OBGetConfig
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1031   .text.HAL_FLASHEx_OBGetConfig:00000058 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1036   .text.HAL_FLASHEx_EnableDebugger:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1042   .text.HAL_FLASHEx_EnableDebugger:00000000 HAL_FLASHEx_EnableDebugger
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1063   .text.HAL_FLASHEx_EnableDebugger:00000010 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1068   .text.HAL_FLASHEx_DisableDebugger:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1074   .text.HAL_FLASHEx_DisableDebugger:00000000 HAL_FLASHEx_DisableDebugger
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1094   .text.HAL_FLASHEx_DisableDebugger:0000000c $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1100   .text.HAL_FLASHEx_FlashEmptyCheck:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1106   .text.HAL_FLASHEx_FlashEmptyCheck:00000000 HAL_FLASHEx_FlashEmptyCheck
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1127   .text.HAL_FLASHEx_FlashEmptyCheck:0000000c $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1132   .text.HAL_FLASHEx_ForceFlashEmpty:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1138   .text.HAL_FLASHEx_ForceFlashEmpty:00000000 HAL_FLASHEx_ForceFlashEmpty
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1168   .text.HAL_FLASHEx_ForceFlashEmpty:00000010 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1174   .text.HAL_FLASHEx_EnableSecMemProtection:00000000 $t
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s 			page 49
+
+
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1180   .text.HAL_FLASHEx_EnableSecMemProtection:00000000 HAL_FLASHEx_EnableSecMemProtection
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1203   .text.HAL_FLASHEx_EnableSecMemProtection:00000010 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1208   .text.FLASH_PageErase:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1214   .text.FLASH_PageErase:00000000 FLASH_PageErase
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1250   .text.FLASH_PageErase:00000014 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1256   .text.HAL_FLASHEx_Erase:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1262   .text.HAL_FLASHEx_Erase:00000000 HAL_FLASHEx_Erase
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1409   .text.HAL_FLASHEx_Erase:0000007c $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1415   .text.HAL_FLASHEx_Erase_IT:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1421   .text.HAL_FLASHEx_Erase_IT:00000000 HAL_FLASHEx_Erase_IT
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1534   .text.HAL_FLASHEx_Erase_IT:00000064 $d
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1540   .text.FLASH_FlushCaches:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1546   .text.FLASH_FlushCaches:00000000 FLASH_FlushCaches
+C:\Users\lenovo\AppData\Local\Temp\ccxmsPs4.s:1592   .text.FLASH_FlushCaches:00000030 $d
+
+UNDEFINED SYMBOLS
+FLASH_WaitForLastOperation
+pFlash

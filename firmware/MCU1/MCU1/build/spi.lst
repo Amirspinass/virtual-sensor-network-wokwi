@@ -1,0 +1,176 @@
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"spi.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MX_SPI1_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	MX_SPI1_Init
+  20              		.syntax unified
+  21              		.code	16
+  22              		.thumb_func
+  24              	MX_SPI1_Init:
+  25              	.LFB214:
+  26              		.file 1 "Core/Src/spi.c"
+   1:Core/Src/spi.c **** #include "spi.h"
+   2:Core/Src/spi.c **** #include "stm32c0xx_hal.h"
+   3:Core/Src/spi.c **** 
+   4:Core/Src/spi.c **** void Error_Handler(void);
+   5:Core/Src/spi.c **** 
+   6:Core/Src/spi.c **** SPI_HandleTypeDef hspi1;
+   7:Core/Src/spi.c **** 
+   8:Core/Src/spi.c **** void MX_SPI1_Init(void)
+   9:Core/Src/spi.c **** {
+  27              		.loc 1 9 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  10:Core/Src/spi.c ****   hspi1.Instance = SPI1;
+  36              		.loc 1 10 3 view .LVU1
+  37              		.loc 1 10 18 is_stmt 0 view .LVU2
+  38 0002 1048     		ldr	r0, .L4
+  39 0004 104B     		ldr	r3, .L4+4
+  40 0006 0360     		str	r3, [r0]
+  11:Core/Src/spi.c ****   hspi1.Init.Mode = SPI_MODE_MASTER;
+  41              		.loc 1 11 3 is_stmt 1 view .LVU3
+  42              		.loc 1 11 19 is_stmt 0 view .LVU4
+  43 0008 8223     		movs	r3, #130
+  44 000a 5B00     		lsls	r3, r3, #1
+  45 000c 4360     		str	r3, [r0, #4]
+  12:Core/Src/spi.c ****   hspi1.Init.Direction = SPI_DIRECTION_2LINES;
+  46              		.loc 1 12 3 is_stmt 1 view .LVU5
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s 			page 2
+
+
+  47              		.loc 1 12 24 is_stmt 0 view .LVU6
+  48 000e 0023     		movs	r3, #0
+  49 0010 8360     		str	r3, [r0, #8]
+  13:Core/Src/spi.c ****   hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+  50              		.loc 1 13 3 is_stmt 1 view .LVU7
+  51              		.loc 1 13 23 is_stmt 0 view .LVU8
+  52 0012 E022     		movs	r2, #224
+  53 0014 D200     		lsls	r2, r2, #3
+  54 0016 C260     		str	r2, [r0, #12]
+  14:Core/Src/spi.c ****   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+  55              		.loc 1 14 3 is_stmt 1 view .LVU9
+  56              		.loc 1 14 26 is_stmt 0 view .LVU10
+  57 0018 0361     		str	r3, [r0, #16]
+  15:Core/Src/spi.c ****   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+  58              		.loc 1 15 3 is_stmt 1 view .LVU11
+  59              		.loc 1 15 23 is_stmt 0 view .LVU12
+  60 001a 4361     		str	r3, [r0, #20]
+  16:Core/Src/spi.c ****   hspi1.Init.NSS = SPI_NSS_SOFT;
+  61              		.loc 1 16 3 is_stmt 1 view .LVU13
+  62              		.loc 1 16 18 is_stmt 0 view .LVU14
+  63 001c 8022     		movs	r2, #128
+  64 001e 9200     		lsls	r2, r2, #2
+  65 0020 8261     		str	r2, [r0, #24]
+  17:Core/Src/spi.c ****   hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
+  66              		.loc 1 17 3 is_stmt 1 view .LVU15
+  67              		.loc 1 17 32 is_stmt 0 view .LVU16
+  68 0022 E93A     		subs	r2, r2, #233
+  69 0024 FF3A     		subs	r2, r2, #255
+  70 0026 C261     		str	r2, [r0, #28]
+  18:Core/Src/spi.c ****   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  71              		.loc 1 18 3 is_stmt 1 view .LVU17
+  72              		.loc 1 18 23 is_stmt 0 view .LVU18
+  73 0028 0362     		str	r3, [r0, #32]
+  19:Core/Src/spi.c ****   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+  74              		.loc 1 19 3 is_stmt 1 view .LVU19
+  75              		.loc 1 19 21 is_stmt 0 view .LVU20
+  76 002a 4362     		str	r3, [r0, #36]
+  20:Core/Src/spi.c ****   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  77              		.loc 1 20 3 is_stmt 1 view .LVU21
+  78              		.loc 1 20 29 is_stmt 0 view .LVU22
+  79 002c 8362     		str	r3, [r0, #40]
+  21:Core/Src/spi.c ****   hspi1.Init.CRCPolynomial = 10;
+  80              		.loc 1 21 3 is_stmt 1 view .LVU23
+  81              		.loc 1 21 28 is_stmt 0 view .LVU24
+  82 002e 0A33     		adds	r3, r3, #10
+  83 0030 C362     		str	r3, [r0, #44]
+  22:Core/Src/spi.c **** 
+  23:Core/Src/spi.c ****   if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  84              		.loc 1 23 3 is_stmt 1 view .LVU25
+  85              		.loc 1 23 7 is_stmt 0 view .LVU26
+  86 0032 FFF7FEFF 		bl	HAL_SPI_Init
+  87              	.LVL0:
+  88              		.loc 1 23 6 view .LVU27
+  89 0036 0028     		cmp	r0, #0
+  90 0038 00D1     		bne	.L3
+  91              	.L1:
+  24:Core/Src/spi.c ****   {
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s 			page 3
+
+
+  25:Core/Src/spi.c ****     Error_Handler();
+  26:Core/Src/spi.c ****   }
+  27:Core/Src/spi.c **** }
+  92              		.loc 1 27 1 view .LVU28
+  93              		@ sp needed
+  94 003a 10BD     		pop	{r4, pc}
+  95              	.L3:
+  25:Core/Src/spi.c ****   }
+  96              		.loc 1 25 5 is_stmt 1 view .LVU29
+  97 003c FFF7FEFF 		bl	Error_Handler
+  98              	.LVL1:
+  99              		.loc 1 27 1 is_stmt 0 view .LVU30
+ 100 0040 FBE7     		b	.L1
+ 101              	.L5:
+ 102 0042 C046     		.align	2
+ 103              	.L4:
+ 104 0044 00000000 		.word	.LANCHOR0
+ 105 0048 00300140 		.word	1073819648
+ 106              		.cfi_endproc
+ 107              	.LFE214:
+ 109              		.global	hspi1
+ 110              		.section	.bss.hspi1,"aw",%nobits
+ 111              		.align	2
+ 112              		.set	.LANCHOR0,. + 0
+ 115              	hspi1:
+ 116 0000 00000000 		.space	100
+ 116      00000000 
+ 116      00000000 
+ 116      00000000 
+ 116      00000000 
+ 117              		.text
+ 118              	.Letext0:
+ 119              		.file 2 "d:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 120              		.file 3 "d:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 121              		.file 4 "Drivers/CMSIS/Device/ST/STM32C0xx/Include/stm32c031xx.h"
+ 122              		.file 5 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_def.h"
+ 123              		.file 6 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_dma.h"
+ 124              		.file 7 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_spi.h"
+ 125              		.file 8 "Core/Inc/spi.h"
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 spi.c
+C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s:18     .text.MX_SPI1_Init:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s:24     .text.MX_SPI1_Init:00000000 MX_SPI1_Init
+C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s:104    .text.MX_SPI1_Init:00000044 $d
+C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s:115    .bss.hspi1:00000000 hspi1
+C:\Users\lenovo\AppData\Local\Temp\ccMRWy6i.s:111    .bss.hspi1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_SPI_Init
+Error_Handler

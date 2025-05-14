@@ -39,11 +39,14 @@ C_SOURCES =  \
 Core/Src/main.c \
 Core/Src/gpio.c \
 Core/Src/i2c.c \
+Core/Src/spi.c \
+Core/Src/usart.c \
 Core/Src/stm32c0xx_it.c \
 Core/Src/stm32c0xx_hal_msp.c \
 Drivers/BSP/STM32C0xx_Nucleo/stm32c0xx_nucleo.c \
 Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_usart_ex.c \
 Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal.c \
+Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_spi.c \
 Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_cortex.c \
 Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_rcc.c \
 Drivers/STM32C0xx_HAL_Driver/Src/stm32c0xx_hal_rcc_ex.c \

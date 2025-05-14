@@ -1,0 +1,151 @@
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usart.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MX_USART1_UART_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	MX_USART1_UART_Init
+  20              		.syntax unified
+  21              		.code	16
+  22              		.thumb_func
+  24              	MX_USART1_UART_Init:
+  25              	.LFB217:
+  26              		.file 1 "Core/Src/usart.c"
+   1:Core/Src/usart.c **** #include "usart.h"
+   2:Core/Src/usart.c **** 
+   3:Core/Src/usart.c **** UART_HandleTypeDef huart1;
+   4:Core/Src/usart.c **** 
+   5:Core/Src/usart.c **** void MX_USART1_UART_Init(void)
+   6:Core/Src/usart.c **** {
+  27              		.loc 1 6 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+   7:Core/Src/usart.c ****   huart1.Instance = USART1;
+  36              		.loc 1 7 3 view .LVU1
+  37              		.loc 1 7 19 is_stmt 0 view .LVU2
+  38 0002 0B48     		ldr	r0, .L4
+  39 0004 0B4B     		ldr	r3, .L4+4
+  40 0006 0360     		str	r3, [r0]
+   8:Core/Src/usart.c ****   huart1.Init.BaudRate = 115200;
+  41              		.loc 1 8 3 is_stmt 1 view .LVU3
+  42              		.loc 1 8 24 is_stmt 0 view .LVU4
+  43 0008 E123     		movs	r3, #225
+  44 000a 5B02     		lsls	r3, r3, #9
+  45 000c 4360     		str	r3, [r0, #4]
+   9:Core/Src/usart.c ****   huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  46              		.loc 1 9 3 is_stmt 1 view .LVU5
+  47              		.loc 1 9 26 is_stmt 0 view .LVU6
+  48 000e 0023     		movs	r3, #0
+  49 0010 8360     		str	r3, [r0, #8]
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s 			page 2
+
+
+  10:Core/Src/usart.c ****   huart1.Init.StopBits = UART_STOPBITS_1;
+  50              		.loc 1 10 3 is_stmt 1 view .LVU7
+  51              		.loc 1 10 24 is_stmt 0 view .LVU8
+  52 0012 C360     		str	r3, [r0, #12]
+  11:Core/Src/usart.c ****   huart1.Init.Parity = UART_PARITY_NONE;
+  53              		.loc 1 11 3 is_stmt 1 view .LVU9
+  54              		.loc 1 11 22 is_stmt 0 view .LVU10
+  55 0014 0361     		str	r3, [r0, #16]
+  12:Core/Src/usart.c ****   huart1.Init.Mode = UART_MODE_TX_RX;
+  56              		.loc 1 12 3 is_stmt 1 view .LVU11
+  57              		.loc 1 12 20 is_stmt 0 view .LVU12
+  58 0016 0C22     		movs	r2, #12
+  59 0018 4261     		str	r2, [r0, #20]
+  13:Core/Src/usart.c ****   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  60              		.loc 1 13 3 is_stmt 1 view .LVU13
+  61              		.loc 1 13 25 is_stmt 0 view .LVU14
+  62 001a 8361     		str	r3, [r0, #24]
+  14:Core/Src/usart.c ****   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  63              		.loc 1 14 3 is_stmt 1 view .LVU15
+  64              		.loc 1 14 28 is_stmt 0 view .LVU16
+  65 001c C361     		str	r3, [r0, #28]
+  15:Core/Src/usart.c **** 
+  16:Core/Src/usart.c ****   if (HAL_UART_Init(&huart1) != HAL_OK)
+  66              		.loc 1 16 3 is_stmt 1 view .LVU17
+  67              		.loc 1 16 7 is_stmt 0 view .LVU18
+  68 001e FFF7FEFF 		bl	HAL_UART_Init
+  69              	.LVL0:
+  70              		.loc 1 16 6 view .LVU19
+  71 0022 0028     		cmp	r0, #0
+  72 0024 00D1     		bne	.L3
+  73              	.L1:
+  17:Core/Src/usart.c ****   {
+  18:Core/Src/usart.c ****     Error_Handler();
+  19:Core/Src/usart.c ****   }
+  20:Core/Src/usart.c **** }
+  74              		.loc 1 20 1 view .LVU20
+  75              		@ sp needed
+  76 0026 10BD     		pop	{r4, pc}
+  77              	.L3:
+  18:Core/Src/usart.c ****   }
+  78              		.loc 1 18 5 is_stmt 1 view .LVU21
+  79 0028 FFF7FEFF 		bl	Error_Handler
+  80              	.LVL1:
+  81              		.loc 1 20 1 is_stmt 0 view .LVU22
+  82 002c FBE7     		b	.L1
+  83              	.L5:
+  84 002e C046     		.align	2
+  85              	.L4:
+  86 0030 00000000 		.word	huart1
+  87 0034 00380140 		.word	1073821696
+  88              		.cfi_endproc
+  89              	.LFE217:
+  91              		.global	huart1
+  92              		.section	.bss.huart1,"aw",%nobits
+  93              		.align	2
+  96              	huart1:
+  97 0000 00000000 		.space	148
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s 			page 3
+
+
+  97      00000000 
+  97      00000000 
+  97      00000000 
+  97      00000000 
+  98              		.text
+  99              	.Letext0:
+ 100              		.file 2 "d:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 101              		.file 3 "d:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 102              		.file 4 "Drivers/CMSIS/Device/ST/STM32C0xx/Include/stm32c031xx.h"
+ 103              		.file 5 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_def.h"
+ 104              		.file 6 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_dma.h"
+ 105              		.file 7 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_uart.h"
+ 106              		.file 8 "Core/Inc/main.h"
+ 107              		.file 9 "Core/Inc/usart.h"
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usart.c
+C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s:18     .text.MX_USART1_UART_Init:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s:24     .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
+C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s:86     .text.MX_USART1_UART_Init:00000030 $d
+C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s:96     .bss.huart1:00000000 huart1
+C:\Users\lenovo\AppData\Local\Temp\cclg3bsI.s:93     .bss.huart1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Init
+Error_Handler
