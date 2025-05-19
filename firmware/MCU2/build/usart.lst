@@ -1,0 +1,673 @@
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usart.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MX_USART1_UART_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	MX_USART1_UART_Init
+  20              		.syntax unified
+  21              		.code	16
+  22              		.thumb_func
+  24              	MX_USART1_UART_Init:
+  25              	.LFB217:
+  26              		.file 1 "Core/Src/usart.c"
+   1:Core/Src/usart.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/usart.c **** /**
+   3:Core/Src/usart.c ****   ******************************************************************************
+   4:Core/Src/usart.c ****   * @file    usart.c
+   5:Core/Src/usart.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/usart.c ****   *          of the USART instances.
+   7:Core/Src/usart.c ****   ******************************************************************************
+   8:Core/Src/usart.c ****   * @attention
+   9:Core/Src/usart.c ****   *
+  10:Core/Src/usart.c ****   * Copyright (c) 2025 STMicroelectronics.
+  11:Core/Src/usart.c ****   * All rights reserved.
+  12:Core/Src/usart.c ****   *
+  13:Core/Src/usart.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/usart.c ****   * in the root directory of this software component.
+  15:Core/Src/usart.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/usart.c ****   *
+  17:Core/Src/usart.c ****   ******************************************************************************
+  18:Core/Src/usart.c ****   */
+  19:Core/Src/usart.c **** /* USER CODE END Header */
+  20:Core/Src/usart.c **** /* Includes ------------------------------------------------------------------*/
+  21:Core/Src/usart.c **** #include "usart.h"
+  22:Core/Src/usart.c **** #include "stm32c0xx_hal.h"
+  23:Core/Src/usart.c **** #include "stm32c0xx_hal_uart.h"
+  24:Core/Src/usart.c **** 
+  25:Core/Src/usart.c **** 
+  26:Core/Src/usart.c **** /* USER CODE BEGIN 0 */
+  27:Core/Src/usart.c **** 
+  28:Core/Src/usart.c **** /* USER CODE END 0 */
+  29:Core/Src/usart.c **** 
+  30:Core/Src/usart.c **** UART_HandleTypeDef huart1;
+  31:Core/Src/usart.c **** 
+  32:Core/Src/usart.c **** /* USART1 init function */
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 2
+
+
+  33:Core/Src/usart.c **** 
+  34:Core/Src/usart.c **** void MX_USART1_UART_Init(void)
+  35:Core/Src/usart.c **** {
+  27              		.loc 1 35 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36:Core/Src/usart.c **** 
+  37:Core/Src/usart.c ****   /* USER CODE BEGIN USART1_Init 0 */
+  38:Core/Src/usart.c **** 
+  39:Core/Src/usart.c ****   /* USER CODE END USART1_Init 0 */
+  40:Core/Src/usart.c **** 
+  41:Core/Src/usart.c ****   /* USER CODE BEGIN USART1_Init 1 */
+  42:Core/Src/usart.c **** 
+  43:Core/Src/usart.c ****   /* USER CODE END USART1_Init 1 */
+  44:Core/Src/usart.c ****   huart1.Instance = USART1;
+  36              		.loc 1 44 3 view .LVU1
+  37              		.loc 1 44 19 is_stmt 0 view .LVU2
+  38 0002 1948     		ldr	r0, .L10
+  39 0004 194B     		ldr	r3, .L10+4
+  40 0006 0360     		str	r3, [r0]
+  45:Core/Src/usart.c ****   huart1.Init.BaudRate = 115200;
+  41              		.loc 1 45 3 is_stmt 1 view .LVU3
+  42              		.loc 1 45 24 is_stmt 0 view .LVU4
+  43 0008 E123     		movs	r3, #225
+  44 000a 5B02     		lsls	r3, r3, #9
+  45 000c 4360     		str	r3, [r0, #4]
+  46:Core/Src/usart.c ****   huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  46              		.loc 1 46 3 is_stmt 1 view .LVU5
+  47              		.loc 1 46 26 is_stmt 0 view .LVU6
+  48 000e 0023     		movs	r3, #0
+  49 0010 8360     		str	r3, [r0, #8]
+  47:Core/Src/usart.c ****   huart1.Init.StopBits = UART_STOPBITS_1;
+  50              		.loc 1 47 3 is_stmt 1 view .LVU7
+  51              		.loc 1 47 24 is_stmt 0 view .LVU8
+  52 0012 C360     		str	r3, [r0, #12]
+  48:Core/Src/usart.c ****   huart1.Init.Parity = UART_PARITY_NONE;
+  53              		.loc 1 48 3 is_stmt 1 view .LVU9
+  54              		.loc 1 48 22 is_stmt 0 view .LVU10
+  55 0014 0361     		str	r3, [r0, #16]
+  49:Core/Src/usart.c ****   huart1.Init.Mode = UART_MODE_TX_RX;
+  56              		.loc 1 49 3 is_stmt 1 view .LVU11
+  57              		.loc 1 49 20 is_stmt 0 view .LVU12
+  58 0016 0C22     		movs	r2, #12
+  59 0018 4261     		str	r2, [r0, #20]
+  50:Core/Src/usart.c ****   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  60              		.loc 1 50 3 is_stmt 1 view .LVU13
+  61              		.loc 1 50 25 is_stmt 0 view .LVU14
+  62 001a 8361     		str	r3, [r0, #24]
+  51:Core/Src/usart.c ****   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  63              		.loc 1 51 3 is_stmt 1 view .LVU15
+  64              		.loc 1 51 28 is_stmt 0 view .LVU16
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 3
+
+
+  65 001c C361     		str	r3, [r0, #28]
+  52:Core/Src/usart.c ****   huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  66              		.loc 1 52 3 is_stmt 1 view .LVU17
+  67              		.loc 1 52 30 is_stmt 0 view .LVU18
+  68 001e 0362     		str	r3, [r0, #32]
+  53:Core/Src/usart.c ****   huart1.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  69              		.loc 1 53 3 is_stmt 1 view .LVU19
+  70              		.loc 1 53 30 is_stmt 0 view .LVU20
+  71 0020 4362     		str	r3, [r0, #36]
+  54:Core/Src/usart.c ****   huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  72              		.loc 1 54 3 is_stmt 1 view .LVU21
+  73              		.loc 1 54 38 is_stmt 0 view .LVU22
+  74 0022 8362     		str	r3, [r0, #40]
+  55:Core/Src/usart.c ****   if (HAL_UART_Init(&huart1) != HAL_OK)
+  75              		.loc 1 55 3 is_stmt 1 view .LVU23
+  76              		.loc 1 55 7 is_stmt 0 view .LVU24
+  77 0024 FFF7FEFF 		bl	HAL_UART_Init
+  78              	.LVL0:
+  79              		.loc 1 55 6 view .LVU25
+  80 0028 0028     		cmp	r0, #0
+  81 002a 11D1     		bne	.L6
+  82              	.L2:
+  56:Core/Src/usart.c ****   {
+  57:Core/Src/usart.c ****     Error_Handler();
+  58:Core/Src/usart.c ****   }
+  59:Core/Src/usart.c ****   if (HAL_UARTEx_SetTxFifoThreshold(&huart1, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
+  83              		.loc 1 59 3 is_stmt 1 view .LVU26
+  84              		.loc 1 59 7 is_stmt 0 view .LVU27
+  85 002c 0021     		movs	r1, #0
+  86 002e 0E48     		ldr	r0, .L10
+  87 0030 FFF7FEFF 		bl	HAL_UARTEx_SetTxFifoThreshold
+  88              	.LVL1:
+  89              		.loc 1 59 6 view .LVU28
+  90 0034 0028     		cmp	r0, #0
+  91 0036 0ED1     		bne	.L7
+  92              	.L3:
+  60:Core/Src/usart.c ****   {
+  61:Core/Src/usart.c ****     Error_Handler();
+  62:Core/Src/usart.c ****   }
+  63:Core/Src/usart.c ****   if (HAL_UARTEx_SetRxFifoThreshold(&huart1, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
+  93              		.loc 1 63 3 is_stmt 1 view .LVU29
+  94              		.loc 1 63 7 is_stmt 0 view .LVU30
+  95 0038 0021     		movs	r1, #0
+  96 003a 0B48     		ldr	r0, .L10
+  97 003c FFF7FEFF 		bl	HAL_UARTEx_SetRxFifoThreshold
+  98              	.LVL2:
+  99              		.loc 1 63 6 view .LVU31
+ 100 0040 0028     		cmp	r0, #0
+ 101 0042 0BD1     		bne	.L8
+ 102              	.L4:
+  64:Core/Src/usart.c ****   {
+  65:Core/Src/usart.c ****     Error_Handler();
+  66:Core/Src/usart.c ****   }
+  67:Core/Src/usart.c ****   if (HAL_UARTEx_DisableFifoMode(&huart1) != HAL_OK)
+ 103              		.loc 1 67 3 is_stmt 1 view .LVU32
+ 104              		.loc 1 67 7 is_stmt 0 view .LVU33
+ 105 0044 0848     		ldr	r0, .L10
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 4
+
+
+ 106 0046 FFF7FEFF 		bl	HAL_UARTEx_DisableFifoMode
+ 107              	.LVL3:
+ 108              		.loc 1 67 6 view .LVU34
+ 109 004a 0028     		cmp	r0, #0
+ 110 004c 09D1     		bne	.L9
+ 111              	.L1:
+  68:Core/Src/usart.c ****   {
+  69:Core/Src/usart.c ****     Error_Handler();
+  70:Core/Src/usart.c ****   }
+  71:Core/Src/usart.c ****   /* USER CODE BEGIN USART1_Init 2 */
+  72:Core/Src/usart.c **** 
+  73:Core/Src/usart.c ****   /* USER CODE END USART1_Init 2 */
+  74:Core/Src/usart.c **** 
+  75:Core/Src/usart.c **** }
+ 112              		.loc 1 75 1 view .LVU35
+ 113              		@ sp needed
+ 114 004e 10BD     		pop	{r4, pc}
+ 115              	.L6:
+  57:Core/Src/usart.c ****   }
+ 116              		.loc 1 57 5 is_stmt 1 view .LVU36
+ 117 0050 FFF7FEFF 		bl	Error_Handler
+ 118              	.LVL4:
+ 119 0054 EAE7     		b	.L2
+ 120              	.L7:
+  61:Core/Src/usart.c ****   }
+ 121              		.loc 1 61 5 view .LVU37
+ 122 0056 FFF7FEFF 		bl	Error_Handler
+ 123              	.LVL5:
+ 124 005a EDE7     		b	.L3
+ 125              	.L8:
+  65:Core/Src/usart.c ****   }
+ 126              		.loc 1 65 5 view .LVU38
+ 127 005c FFF7FEFF 		bl	Error_Handler
+ 128              	.LVL6:
+ 129 0060 F0E7     		b	.L4
+ 130              	.L9:
+  69:Core/Src/usart.c ****   }
+ 131              		.loc 1 69 5 view .LVU39
+ 132 0062 FFF7FEFF 		bl	Error_Handler
+ 133              	.LVL7:
+ 134              		.loc 1 75 1 is_stmt 0 view .LVU40
+ 135 0066 F2E7     		b	.L1
+ 136              	.L11:
+ 137              		.align	2
+ 138              	.L10:
+ 139 0068 00000000 		.word	huart1
+ 140 006c 00380140 		.word	1073821696
+ 141              		.cfi_endproc
+ 142              	.LFE217:
+ 144              		.section	.text.HAL_UART_MspInit,"ax",%progbits
+ 145              		.align	1
+ 146              		.global	HAL_UART_MspInit
+ 147              		.syntax unified
+ 148              		.code	16
+ 149              		.thumb_func
+ 151              	HAL_UART_MspInit:
+ 152              	.LVL8:
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 5
+
+
+ 153              	.LFB218:
+  76:Core/Src/usart.c **** 
+  77:Core/Src/usart.c **** void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
+  78:Core/Src/usart.c **** {
+ 154              		.loc 1 78 1 is_stmt 1 view -0
+ 155              		.cfi_startproc
+ 156              		@ args = 0, pretend = 0, frame = 64
+ 157              		@ frame_needed = 0, uses_anonymous_args = 0
+ 158              		.loc 1 78 1 is_stmt 0 view .LVU42
+ 159 0000 70B5     		push	{r4, r5, r6, lr}
+ 160              	.LCFI1:
+ 161              		.cfi_def_cfa_offset 16
+ 162              		.cfi_offset 4, -16
+ 163              		.cfi_offset 5, -12
+ 164              		.cfi_offset 6, -8
+ 165              		.cfi_offset 14, -4
+ 166 0002 90B0     		sub	sp, sp, #64
+ 167              	.LCFI2:
+ 168              		.cfi_def_cfa_offset 80
+ 169 0004 0400     		movs	r4, r0
+  79:Core/Src/usart.c **** 
+  80:Core/Src/usart.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+ 170              		.loc 1 80 3 is_stmt 1 view .LVU43
+ 171              		.loc 1 80 20 is_stmt 0 view .LVU44
+ 172 0006 1422     		movs	r2, #20
+ 173 0008 0021     		movs	r1, #0
+ 174 000a 0BA8     		add	r0, sp, #44
+ 175              	.LVL9:
+ 176              		.loc 1 80 20 view .LVU45
+ 177 000c FFF7FEFF 		bl	memset
+ 178              	.LVL10:
+  81:Core/Src/usart.c ****   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+ 179              		.loc 1 81 3 is_stmt 1 view .LVU46
+ 180              		.loc 1 81 28 is_stmt 0 view .LVU47
+ 181 0010 1C22     		movs	r2, #28
+ 182 0012 0021     		movs	r1, #0
+ 183 0014 04A8     		add	r0, sp, #16
+ 184 0016 FFF7FEFF 		bl	memset
+ 185              	.LVL11:
+  82:Core/Src/usart.c ****   if(uartHandle->Instance==USART1)
+ 186              		.loc 1 82 3 is_stmt 1 view .LVU48
+ 187              		.loc 1 82 16 is_stmt 0 view .LVU49
+ 188 001a 2268     		ldr	r2, [r4]
+ 189              		.loc 1 82 5 view .LVU50
+ 190 001c 1F4B     		ldr	r3, .L17
+ 191 001e 9A42     		cmp	r2, r3
+ 192 0020 01D0     		beq	.L15
+ 193              	.LVL12:
+ 194              	.L12:
+  83:Core/Src/usart.c ****   {
+  84:Core/Src/usart.c ****   /* USER CODE BEGIN USART1_MspInit 0 */
+  85:Core/Src/usart.c **** 
+  86:Core/Src/usart.c ****   /* USER CODE END USART1_MspInit 0 */
+  87:Core/Src/usart.c **** 
+  88:Core/Src/usart.c ****   /** Initializes the peripherals clocks
+  89:Core/Src/usart.c ****   */
+  90:Core/Src/usart.c ****     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1;
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 6
+
+
+  91:Core/Src/usart.c ****     PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+  92:Core/Src/usart.c ****     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+  93:Core/Src/usart.c ****     {
+  94:Core/Src/usart.c ****       Error_Handler();
+  95:Core/Src/usart.c ****     }
+  96:Core/Src/usart.c **** 
+  97:Core/Src/usart.c ****     /* USART1 clock enable */
+  98:Core/Src/usart.c ****     __HAL_RCC_USART1_CLK_ENABLE();
+  99:Core/Src/usart.c **** 
+ 100:Core/Src/usart.c ****     __HAL_RCC_GPIOA_CLK_ENABLE();
+ 101:Core/Src/usart.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 102:Core/Src/usart.c ****     /**USART1 GPIO Configuration
+ 103:Core/Src/usart.c ****     PA0     ------> USART1_TX
+ 104:Core/Src/usart.c ****     PB2     ------> USART1_RX
+ 105:Core/Src/usart.c ****     */
+ 106:Core/Src/usart.c ****     GPIO_InitStruct.Pin = GPIO_PIN_0;
+ 107:Core/Src/usart.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 108:Core/Src/usart.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 109:Core/Src/usart.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 110:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF4_USART1;
+ 111:Core/Src/usart.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 112:Core/Src/usart.c **** 
+ 113:Core/Src/usart.c ****     GPIO_InitStruct.Pin = GPIO_PIN_2;
+ 114:Core/Src/usart.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 115:Core/Src/usart.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 116:Core/Src/usart.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 117:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF0_USART1;
+ 118:Core/Src/usart.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 119:Core/Src/usart.c **** 
+ 120:Core/Src/usart.c ****   /* USER CODE BEGIN USART1_MspInit 1 */
+ 121:Core/Src/usart.c **** 
+ 122:Core/Src/usart.c ****   /* USER CODE END USART1_MspInit 1 */
+ 123:Core/Src/usart.c ****   }
+ 124:Core/Src/usart.c **** }
+ 195              		.loc 1 124 1 view .LVU51
+ 196 0022 10B0     		add	sp, sp, #64
+ 197              		@ sp needed
+ 198 0024 70BD     		pop	{r4, r5, r6, pc}
+ 199              	.LVL13:
+ 200              	.L15:
+  90:Core/Src/usart.c ****     PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+ 201              		.loc 1 90 5 is_stmt 1 view .LVU52
+  90:Core/Src/usart.c ****     PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
+ 202              		.loc 1 90 40 is_stmt 0 view .LVU53
+ 203 0026 0123     		movs	r3, #1
+ 204 0028 0493     		str	r3, [sp, #16]
+  91:Core/Src/usart.c ****     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+ 205              		.loc 1 91 5 is_stmt 1 view .LVU54
+  92:Core/Src/usart.c ****     {
+ 206              		.loc 1 92 5 view .LVU55
+  92:Core/Src/usart.c ****     {
+ 207              		.loc 1 92 9 is_stmt 0 view .LVU56
+ 208 002a 04A8     		add	r0, sp, #16
+ 209 002c FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 210              	.LVL14:
+  92:Core/Src/usart.c ****     {
+ 211              		.loc 1 92 8 view .LVU57
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 7
+
+
+ 212 0030 0028     		cmp	r0, #0
+ 213 0032 2FD1     		bne	.L16
+ 214              	.L14:
+  98:Core/Src/usart.c **** 
+ 215              		.loc 1 98 5 is_stmt 1 view .LVU58
+ 216              	.LBB2:
+  98:Core/Src/usart.c **** 
+ 217              		.loc 1 98 5 view .LVU59
+  98:Core/Src/usart.c **** 
+ 218              		.loc 1 98 5 view .LVU60
+ 219 0034 1A4B     		ldr	r3, .L17+4
+ 220 0036 196C     		ldr	r1, [r3, #64]
+ 221 0038 8020     		movs	r0, #128
+ 222 003a C001     		lsls	r0, r0, #7
+ 223 003c 0143     		orrs	r1, r0
+ 224 003e 1964     		str	r1, [r3, #64]
+  98:Core/Src/usart.c **** 
+ 225              		.loc 1 98 5 view .LVU61
+ 226 0040 1A6C     		ldr	r2, [r3, #64]
+ 227 0042 0240     		ands	r2, r0
+ 228 0044 0192     		str	r2, [sp, #4]
+  98:Core/Src/usart.c **** 
+ 229              		.loc 1 98 5 view .LVU62
+ 230 0046 019A     		ldr	r2, [sp, #4]
+ 231              	.LBE2:
+  98:Core/Src/usart.c **** 
+ 232              		.loc 1 98 5 view .LVU63
+ 100:Core/Src/usart.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 233              		.loc 1 100 5 view .LVU64
+ 234              	.LBB3:
+ 100:Core/Src/usart.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 235              		.loc 1 100 5 view .LVU65
+ 100:Core/Src/usart.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 236              		.loc 1 100 5 view .LVU66
+ 237 0048 596B     		ldr	r1, [r3, #52]
+ 238 004a 0122     		movs	r2, #1
+ 239 004c 1143     		orrs	r1, r2
+ 240 004e 5963     		str	r1, [r3, #52]
+ 100:Core/Src/usart.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 241              		.loc 1 100 5 view .LVU67
+ 242 0050 596B     		ldr	r1, [r3, #52]
+ 243 0052 1140     		ands	r1, r2
+ 244 0054 0291     		str	r1, [sp, #8]
+ 100:Core/Src/usart.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 245              		.loc 1 100 5 view .LVU68
+ 246 0056 0299     		ldr	r1, [sp, #8]
+ 247              	.LBE3:
+ 100:Core/Src/usart.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
+ 248              		.loc 1 100 5 view .LVU69
+ 101:Core/Src/usart.c ****     /**USART1 GPIO Configuration
+ 249              		.loc 1 101 5 view .LVU70
+ 250              	.LBB4:
+ 101:Core/Src/usart.c ****     /**USART1 GPIO Configuration
+ 251              		.loc 1 101 5 view .LVU71
+ 101:Core/Src/usart.c ****     /**USART1 GPIO Configuration
+ 252              		.loc 1 101 5 view .LVU72
+ 253 0058 596B     		ldr	r1, [r3, #52]
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 8
+
+
+ 254 005a 0225     		movs	r5, #2
+ 255 005c 2943     		orrs	r1, r5
+ 256 005e 5963     		str	r1, [r3, #52]
+ 101:Core/Src/usart.c ****     /**USART1 GPIO Configuration
+ 257              		.loc 1 101 5 view .LVU73
+ 258 0060 5B6B     		ldr	r3, [r3, #52]
+ 259 0062 2B40     		ands	r3, r5
+ 260 0064 0393     		str	r3, [sp, #12]
+ 101:Core/Src/usart.c ****     /**USART1 GPIO Configuration
+ 261              		.loc 1 101 5 view .LVU74
+ 262 0066 039B     		ldr	r3, [sp, #12]
+ 263              	.LBE4:
+ 101:Core/Src/usart.c ****     /**USART1 GPIO Configuration
+ 264              		.loc 1 101 5 view .LVU75
+ 106:Core/Src/usart.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 265              		.loc 1 106 5 view .LVU76
+ 106:Core/Src/usart.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 266              		.loc 1 106 25 is_stmt 0 view .LVU77
+ 267 0068 0B92     		str	r2, [sp, #44]
+ 107:Core/Src/usart.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 268              		.loc 1 107 5 is_stmt 1 view .LVU78
+ 107:Core/Src/usart.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 269              		.loc 1 107 26 is_stmt 0 view .LVU79
+ 270 006a 0C95     		str	r5, [sp, #48]
+ 108:Core/Src/usart.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 271              		.loc 1 108 5 is_stmt 1 view .LVU80
+ 108:Core/Src/usart.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 272              		.loc 1 108 26 is_stmt 0 view .LVU81
+ 273 006c 0024     		movs	r4, #0
+ 274              	.LVL15:
+ 108:Core/Src/usart.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 275              		.loc 1 108 26 view .LVU82
+ 276 006e 0D94     		str	r4, [sp, #52]
+ 109:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF4_USART1;
+ 277              		.loc 1 109 5 is_stmt 1 view .LVU83
+ 109:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF4_USART1;
+ 278              		.loc 1 109 27 is_stmt 0 view .LVU84
+ 279 0070 0E94     		str	r4, [sp, #56]
+ 110:Core/Src/usart.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 280              		.loc 1 110 5 is_stmt 1 view .LVU85
+ 110:Core/Src/usart.c ****     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 281              		.loc 1 110 31 is_stmt 0 view .LVU86
+ 282 0072 0426     		movs	r6, #4
+ 283 0074 0F96     		str	r6, [sp, #60]
+ 111:Core/Src/usart.c **** 
+ 284              		.loc 1 111 5 is_stmt 1 view .LVU87
+ 285 0076 A020     		movs	r0, #160
+ 286 0078 0BA9     		add	r1, sp, #44
+ 287 007a C005     		lsls	r0, r0, #23
+ 288 007c FFF7FEFF 		bl	HAL_GPIO_Init
+ 289              	.LVL16:
+ 113:Core/Src/usart.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 290              		.loc 1 113 5 view .LVU88
+ 113:Core/Src/usart.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 291              		.loc 1 113 25 is_stmt 0 view .LVU89
+ 292 0080 0B96     		str	r6, [sp, #44]
+ 114:Core/Src/usart.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 9
+
+
+ 293              		.loc 1 114 5 is_stmt 1 view .LVU90
+ 114:Core/Src/usart.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 294              		.loc 1 114 26 is_stmt 0 view .LVU91
+ 295 0082 0C95     		str	r5, [sp, #48]
+ 115:Core/Src/usart.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 296              		.loc 1 115 5 is_stmt 1 view .LVU92
+ 115:Core/Src/usart.c ****     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 297              		.loc 1 115 26 is_stmt 0 view .LVU93
+ 298 0084 0D94     		str	r4, [sp, #52]
+ 116:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF0_USART1;
+ 299              		.loc 1 116 5 is_stmt 1 view .LVU94
+ 116:Core/Src/usart.c ****     GPIO_InitStruct.Alternate = GPIO_AF0_USART1;
+ 300              		.loc 1 116 27 is_stmt 0 view .LVU95
+ 301 0086 0E94     		str	r4, [sp, #56]
+ 117:Core/Src/usart.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 302              		.loc 1 117 5 is_stmt 1 view .LVU96
+ 117:Core/Src/usart.c ****     HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 303              		.loc 1 117 31 is_stmt 0 view .LVU97
+ 304 0088 0F94     		str	r4, [sp, #60]
+ 118:Core/Src/usart.c **** 
+ 305              		.loc 1 118 5 is_stmt 1 view .LVU98
+ 306 008a 0BA9     		add	r1, sp, #44
+ 307 008c 0548     		ldr	r0, .L17+8
+ 308 008e FFF7FEFF 		bl	HAL_GPIO_Init
+ 309              	.LVL17:
+ 310              		.loc 1 124 1 is_stmt 0 view .LVU99
+ 311 0092 C6E7     		b	.L12
+ 312              	.LVL18:
+ 313              	.L16:
+  94:Core/Src/usart.c ****     }
+ 314              		.loc 1 94 7 is_stmt 1 view .LVU100
+ 315 0094 FFF7FEFF 		bl	Error_Handler
+ 316              	.LVL19:
+ 317 0098 CCE7     		b	.L14
+ 318              	.L18:
+ 319 009a C046     		.align	2
+ 320              	.L17:
+ 321 009c 00380140 		.word	1073821696
+ 322 00a0 00100240 		.word	1073876992
+ 323 00a4 00040050 		.word	1342178304
+ 324              		.cfi_endproc
+ 325              	.LFE218:
+ 327              		.section	.text.HAL_UART_MspDeInit,"ax",%progbits
+ 328              		.align	1
+ 329              		.global	HAL_UART_MspDeInit
+ 330              		.syntax unified
+ 331              		.code	16
+ 332              		.thumb_func
+ 334              	HAL_UART_MspDeInit:
+ 335              	.LVL20:
+ 336              	.LFB219:
+ 125:Core/Src/usart.c **** 
+ 126:Core/Src/usart.c **** void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
+ 127:Core/Src/usart.c **** {
+ 337              		.loc 1 127 1 view -0
+ 338              		.cfi_startproc
+ 339              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 10
+
+
+ 340              		@ frame_needed = 0, uses_anonymous_args = 0
+ 341              		.loc 1 127 1 is_stmt 0 view .LVU102
+ 342 0000 10B5     		push	{r4, lr}
+ 343              	.LCFI3:
+ 344              		.cfi_def_cfa_offset 8
+ 345              		.cfi_offset 4, -8
+ 346              		.cfi_offset 14, -4
+ 128:Core/Src/usart.c **** 
+ 129:Core/Src/usart.c ****   if(uartHandle->Instance==USART1)
+ 347              		.loc 1 129 3 is_stmt 1 view .LVU103
+ 348              		.loc 1 129 16 is_stmt 0 view .LVU104
+ 349 0002 0268     		ldr	r2, [r0]
+ 350              		.loc 1 129 5 view .LVU105
+ 351 0004 094B     		ldr	r3, .L22
+ 352 0006 9A42     		cmp	r2, r3
+ 353 0008 00D0     		beq	.L21
+ 354              	.LVL21:
+ 355              	.L19:
+ 130:Core/Src/usart.c ****   {
+ 131:Core/Src/usart.c ****   /* USER CODE BEGIN USART1_MspDeInit 0 */
+ 132:Core/Src/usart.c **** 
+ 133:Core/Src/usart.c ****   /* USER CODE END USART1_MspDeInit 0 */
+ 134:Core/Src/usart.c ****     /* Peripheral clock disable */
+ 135:Core/Src/usart.c ****     __HAL_RCC_USART1_CLK_DISABLE();
+ 136:Core/Src/usart.c **** 
+ 137:Core/Src/usart.c ****     /**USART1 GPIO Configuration
+ 138:Core/Src/usart.c ****     PA0     ------> USART1_TX
+ 139:Core/Src/usart.c ****     PB2     ------> USART1_RX
+ 140:Core/Src/usart.c ****     */
+ 141:Core/Src/usart.c ****     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0);
+ 142:Core/Src/usart.c **** 
+ 143:Core/Src/usart.c ****     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_2);
+ 144:Core/Src/usart.c **** 
+ 145:Core/Src/usart.c ****   /* USER CODE BEGIN USART1_MspDeInit 1 */
+ 146:Core/Src/usart.c **** 
+ 147:Core/Src/usart.c ****   /* USER CODE END USART1_MspDeInit 1 */
+ 148:Core/Src/usart.c ****   }
+ 149:Core/Src/usart.c **** }
+ 356              		.loc 1 149 1 view .LVU106
+ 357              		@ sp needed
+ 358 000a 10BD     		pop	{r4, pc}
+ 359              	.LVL22:
+ 360              	.L21:
+ 135:Core/Src/usart.c **** 
+ 361              		.loc 1 135 5 is_stmt 1 view .LVU107
+ 362 000c 084A     		ldr	r2, .L22+4
+ 363 000e 136C     		ldr	r3, [r2, #64]
+ 364 0010 0849     		ldr	r1, .L22+8
+ 365 0012 0B40     		ands	r3, r1
+ 366 0014 1364     		str	r3, [r2, #64]
+ 141:Core/Src/usart.c **** 
+ 367              		.loc 1 141 5 view .LVU108
+ 368 0016 A020     		movs	r0, #160
+ 369              	.LVL23:
+ 141:Core/Src/usart.c **** 
+ 370              		.loc 1 141 5 is_stmt 0 view .LVU109
+ 371 0018 0121     		movs	r1, #1
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 11
+
+
+ 372 001a C005     		lsls	r0, r0, #23
+ 373 001c FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 374              	.LVL24:
+ 143:Core/Src/usart.c **** 
+ 375              		.loc 1 143 5 is_stmt 1 view .LVU110
+ 376 0020 0421     		movs	r1, #4
+ 377 0022 0548     		ldr	r0, .L22+12
+ 378 0024 FFF7FEFF 		bl	HAL_GPIO_DeInit
+ 379              	.LVL25:
+ 380              		.loc 1 149 1 is_stmt 0 view .LVU111
+ 381 0028 EFE7     		b	.L19
+ 382              	.L23:
+ 383 002a C046     		.align	2
+ 384              	.L22:
+ 385 002c 00380140 		.word	1073821696
+ 386 0030 00100240 		.word	1073876992
+ 387 0034 FFBFFFFF 		.word	-16385
+ 388 0038 00040050 		.word	1342178304
+ 389              		.cfi_endproc
+ 390              	.LFE219:
+ 392              		.global	huart1
+ 393              		.section	.bss.huart1,"aw",%nobits
+ 394              		.align	2
+ 397              	huart1:
+ 398 0000 00000000 		.space	148
+ 398      00000000 
+ 398      00000000 
+ 398      00000000 
+ 398      00000000 
+ 399              		.text
+ 400              	.Letext0:
+ 401              		.file 2 "d:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 402              		.file 3 "d:\\program files (x86)\\gnu arm embedded toolchain\\10 2021.10\\arm-none-eabi\\include\\
+ 403              		.file 4 "Drivers/CMSIS/Device/ST/STM32C0xx/Include/stm32c031xx.h"
+ 404              		.file 5 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_def.h"
+ 405              		.file 6 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_rcc_ex.h"
+ 406              		.file 7 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_gpio.h"
+ 407              		.file 8 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_dma.h"
+ 408              		.file 9 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_uart.h"
+ 409              		.file 10 "Core/Inc/main.h"
+ 410              		.file 11 "Drivers/STM32C0xx_HAL_Driver/Inc/stm32c0xx_hal_uart_ex.h"
+ 411              		.file 12 "Core/Inc/usart.h"
+ 412              		.file 13 "<built-in>"
+ARM GAS  C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 usart.c
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:18     .text.MX_USART1_UART_Init:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:24     .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:139    .text.MX_USART1_UART_Init:00000068 $d
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:397    .bss.huart1:00000000 huart1
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:145    .text.HAL_UART_MspInit:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:151    .text.HAL_UART_MspInit:00000000 HAL_UART_MspInit
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:321    .text.HAL_UART_MspInit:0000009c $d
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:328    .text.HAL_UART_MspDeInit:00000000 $t
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:334    .text.HAL_UART_MspDeInit:00000000 HAL_UART_MspDeInit
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:385    .text.HAL_UART_MspDeInit:0000002c $d
+C:\Users\lenovo\AppData\Local\Temp\ccee6L4X.s:394    .bss.huart1:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Init
+HAL_UARTEx_SetTxFifoThreshold
+HAL_UARTEx_SetRxFifoThreshold
+HAL_UARTEx_DisableFifoMode
+Error_Handler
+memset
+HAL_RCCEx_PeriphCLKConfig
+HAL_GPIO_Init
+HAL_GPIO_DeInit
